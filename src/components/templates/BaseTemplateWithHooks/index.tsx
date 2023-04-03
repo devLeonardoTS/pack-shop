@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
-import styles from "./BaseTemplate.module.scss";
+import styles from "./index.module.scss";
 
 export type BaseTemplateWithHooksProps = {
   children?: React.ReactNode;

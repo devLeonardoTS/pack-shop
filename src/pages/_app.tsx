@@ -1,5 +1,5 @@
 import Injectors from "@/components/common/Injectors";
-import PrimaryLayout from "@/components/layouts/primary/PrimaryLayout";
+import PrimaryLayout from "@/components/layouts/PrimaryLayout";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 

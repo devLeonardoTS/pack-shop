@@ -1,4 +1,4 @@
-import styles from "./BaseTemplate.module.scss";
+import styles from "./index.module.scss";
 
 export type BaseTemplateProps = {
   sampleTextProp: string;

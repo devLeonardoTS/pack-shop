@@ -1,5 +1,5 @@
-import BaseTemplate from "@/components/templates/base/BaseTemplate";
-import BaseTemplateWithHooks from "@/components/templates/base/BaseTemplateWithHooks";
+import BaseTemplate from "@/components/templates/BaseTemplate";
+import BaseTemplateWithHooks from "@/components/templates/BaseTemplateWithHooks";
 import Head from "next/head";
 
 export default function Home() {

@@ -1,5 +1,5 @@
 import React from "react";
-import { PrimaryLayoutProps } from "./PrimaryLayout";
+import { PrimaryLayoutProps } from ".";
 
 // "*.mocks" are sample data for your component's properties.
 

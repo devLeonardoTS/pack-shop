@@ -1,4 +1,4 @@
-import styles from "./PrimaryLayout.module.scss";
+import styles from "./index.module.scss";
 
 export type PrimaryLayoutProps = {
   children?: React.ReactNode;
