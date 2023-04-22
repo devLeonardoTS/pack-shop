@@ -1,6 +1,8 @@
-import BaseTemplate from "@/components/templates/BaseTemplate";
+import BaseEmailEnter from "@/components/templates/BaseEmailEnter";
 import BaseTemplateWithHooks from "@/components/templates/BaseTemplateWithHooks";
+import BasicBlockText from "@/components/templates/BasicBlockText";
 import Head from "next/head";
+
 
 export default function Home() {
   return (
@@ -11,22 +13,36 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1 style={{ textAlign: "center" }} data-test="msg-welcome">
-          We are PackShop
+      <main
+        className="titulos"
+        style={{
+          padding: "30px",
+        }}
+      >
+        <h1
+          style={{
+            textAlign: "left",
+            margin: "40px 0px -15px 0px",
+            fontSize: "2.7em",
+          }}
+          data-test="msg-welcome"
+        >
+          RECEBA ATUALIZAÇÕES<br/>SOBRE NOSSO LANÇAMENTO
         </h1>
         <br />
         <div
+          className="titulos"
           style={{
             width: "100%",
             display: "flex",
             flexDirection: "column",
             gap: 16,
-            alignItems: "center",
+            alignItems: "left",
           }}
         >
-          <BaseTemplate sampleTextProp="Soon delivering all kind of goods to you" />
-          <BaseTemplateWithHooks />
+          <BaseEmailEnter />
+          <BasicBlockText />
+          {/* <BaseTemplateWithHooks /> */}
         </div>
       </main>
     </>
