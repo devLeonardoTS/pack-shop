@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Aladin&family=Nunito:ital,wght@0,200;0,300;1,200;1,400;1,600;1,700&family=Roboto:wght@100;300;400&display=swap');
+
+
+
+.main_container {
+  background-color: rgb(245, 126, 0,0.25);
+  height: 100vh;
+  margin: 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.main_header
+{
+  height: 70px;
+  width: 100%;
+  background-color: #0d0d0d ;
+  display: flex;
+  align-items: center;
+  .logo_titulo
+  {
+    // background-color: green;
+    display: flex;
+    
+    width: fit-content;
+    height: 100%;
+    .logo_main_header {
+        // height: 100%;
+        width: fit-content;
+        position: relative;
+        left: -15px;
+        top: -26px;
+        // background-color: red;
+      }
+    
+      h1 {
+        font-family: "Aladin";
+        color: white;
+        position: relative;
+        left: -20px;
+        top: 5px;
+        // margin: 10px 0px 0px 0px;
+        font-size: 1.7em;
+        height: fit-content;
+        margin: auto 0px auto auto;
+      }
+  }
+  .welcome
+  {
+    font-family: 'Bebas Neue';
+    color: white;
+    text-decoration: underline;
+    margin: auto 0px auto -2px;
+    display: block;
+    // text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+  }
+}
+
+.main_titulo {
+  text-align: left;
+  margin: 10px 0px 0px 10px;
+  font-size: 2.2em;
+  font-Family: "Bebas Neue"
+}
+
+.about_us
+{
+  // background-color: green;
+  font-family: "imprima";
+  margin: 50px 10px 10px 10px;
+  h2
+  {
+    font-size: 1.5em;
+  }
+  .block_copy
+  {
+    margin: 10px 25px;
+    max-width: 290px;
+    padding: 5px;
+    border: 2px solid;
+    box-Shadow: -8px -8px #3F0957;
+    font-size: 1.3em;
+    text-align: center;
+  }
+}
+
+.end_main_infos
+{
+  height: 100%;
+  width: 100%;
+  // background-color: #0d0d0d;
+  background-color: rgb(245, 126, 0, 0);
+  color: white;
+  display: flex;
+  align-items: center;
+  // margin: auto 0px 0px 0px;
+  // transform: translateY(100%);
+  .real_footer
+  {
+    // background-color: green;
+    background-color: #0d0d0d;
+    height: fit-content;
+    width: 100%;
+    margin: auto 0px 0px 0px;
+    padding: 5px 0px 5px 0px;
+    display: flex;
+    h3 
+    {
+      font-size: 0.7em;
+      margin: auto;
+    }
+  }
+  
+}
+

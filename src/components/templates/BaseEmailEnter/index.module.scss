@@ -1,2 +1,39 @@
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Imprima&display=swap');
+
+.container
+{
+    // max-width: auto;
+    // width: fit-content;
+    // background-color: green;
+    p 
+    {
+        font-Family: "Imprima";
+        margin: 10px 30px 0px 10px;
+    }
+}
+.entry_form_1 
+{
+    border: 1px solid;
+    max-Width: 300px;
+    display: flex;
+    box-Shadow: 8px 8px #3F0957;
+    margin: 0px 0px 0px 10px;
+    input 
+    {
+        font-Family: "Bebas Neue";
+        max-Width: 300px;
+        border: 0px solid;
+        padding: 4px;
+        font-Size: 1.7em;
+        width: 100%;
+    }
+    button
+    {
+        padding: 7px;
+        background: white;
+        border: 0px solid;
+        font-Size: 1.3em;
+        font-Family: "Bebas Neue";
+        border-Left: 1px solid;
+    }
 }

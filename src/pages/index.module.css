@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Aladin&family=Nunito:ital,wght@0,200;0,300;1,200;1,400;1,600;1,700&family=Roboto:wght@100;300;400&display=swap");
+.main_container {
+  background-color: rgba(245, 126, 0, 0.25);
+  height: 100vh;
+  margin: 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.main_header {
+  height: 70px;
+  width: 100%;
+  background-color: #0d0d0d;
+  display: flex;
+  align-items: center;
+}
+.main_header .logo_titulo {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+}
+.main_header .logo_titulo .logo_main_header {
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  left: -15px;
+  top: -26px;
+}
+.main_header .logo_titulo h1 {
+  font-family: "Aladin";
+  color: white;
+  position: relative;
+  left: -20px;
+  top: 5px;
+  font-size: 1.7em;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: auto 0px auto auto;
+}
+.main_header .welcome {
+  font-family: "Bebas Neue";
+  color: white;
+  text-decoration: underline;
+  margin: auto 0px auto -2px;
+  display: block;
+}
+
+.main_titulo {
+  text-align: left;
+  margin: 10px 0px 0px 10px;
+  font-size: 2.2em;
+  font-Family: "Bebas Neue";
+}
+
+.about_us {
+  font-family: "imprima";
+  margin: 50px 10px 10px 10px;
+}
+.about_us h2 {
+  font-size: 1.5em;
+}
+.about_us .block_copy {
+  margin: 10px 25px;
+  max-width: 290px;
+  padding: 5px;
+  border: 2px solid;
+  box-Shadow: -8px -8px #3F0957;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.end_main_infos {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(245, 126, 0, 0);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.end_main_infos .real_footer {
+  background-color: #0d0d0d;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  margin: auto 0px 0px 0px;
+  padding: 5px 0px 5px 0px;
+  display: flex;
+}
+.end_main_infos .real_footer h3 {
+  font-size: 0.7em;
+  margin: auto;
+}/*# sourceMappingURL=index.module.css.map */
