@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Aladin&family=Nunito:ital,wght@0,200;0,300;1,200;1,400;1,600;1,700&family=Roboto:wght@100;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;500&display=swap");
 .main_container {
   background-color: rgba(245, 126, 0, 0.25);
   height: 100vh;
@@ -9,9 +10,8 @@
 }
 
 .main_header {
-  height: 70px;
+  height: 100px;
   width: 100%;
-  background-color: #0d0d0d;
   display: flex;
   align-items: center;
 }
@@ -25,16 +25,16 @@
   width: -moz-fit-content;
   width: fit-content;
   position: relative;
-  left: -15px;
+  left: -10px;
   top: -26px;
 }
 .main_header .logo_titulo h1 {
   font-family: "Aladin";
-  color: white;
+  color: black;
   position: relative;
-  left: -20px;
+  left: -10px;
   top: 5px;
-  font-size: 1.7em;
+  font-size: 1.9em;
   height: -moz-fit-content;
   height: fit-content;
   margin: auto 0px auto auto;
@@ -42,16 +42,119 @@
 .main_header .welcome {
   font-family: "Bebas Neue";
   color: white;
-  text-decoration: underline;
   margin: auto 0px auto -2px;
+}
+.main_header .about_seemore {
+  position: relative;
+  color: white;
+  margin: 0px 0px 0px auto;
+}
+.main_header .about_seemore span:nth-child(1) {
+  color: black;
+  font-family: "Source sans 3";
+  font-size: large;
+  margin: 0px 10px 0px 10px;
+  cursor: pointer;
+}
+.main_header .about_seemore span:nth-child(1)::after {
+  content: "";
   display: block;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #F57E00;
+  top: 80%;
+  left: 2.5%;
+  transition: 0.5s;
+}
+.main_header .about_seemore span:nth-child(1):hover::after {
+  width: 27%;
+}
+.main_header .about_seemore span:nth-child(2) {
+  color: black;
+  font-family: "Source sans 3";
+  font-size: large;
+  margin: 0px 10px 0px 10px;
+  cursor: pointer;
+}
+.main_header .about_seemore span:nth-child(2) svg {
+  width: 15px;
+  height: 15px;
+  margin: 0px 0px -2px 5px;
+}
+.main_header .about_seemore span:nth-child(2) svg path {
+  color: green;
+}
+.main_header .about_seemore span:nth-child(2)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #F57E00;
+  top: 80%;
+  left: 34.7%;
+  transition: 0.5s;
+}
+.main_header .about_seemore span:nth-child(2):hover::after {
+  width: 57%;
 }
 
-.main_titulo {
+.main_header_section {
+  display: flex;
+}
+.main_header_section .main_titulo {
   text-align: left;
-  margin: 10px 0px 0px 10px;
+  max-width: 576px;
+  text-align: center;
+  margin: 10px auto 0px auto;
   font-size: 2.2em;
-  font-Family: "Bebas Neue";
+  font-Family: "Source sans 3";
+}
+.main_header_section .main_titulo span {
+  color: #F57E00;
+  text-shadow: 1px 1px 5px black;
+}
+.main_header_section .send_email_desk {
+  max-width: 480px;
+  padding: 30px;
+  border: 2px solid;
+  margin: auto;
+  box-Shadow: 8px 8px #3F0957;
+}
+.main_header_section .send_email_desk h3 {
+  margin: 0px auto 10px auto;
+}
+.main_header_section .send_email_desk .entry_form_desk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main_header_section .send_email_desk .entry_form_desk p {
+  margin: 10px auto 5px 0px;
+}
+.main_header_section .send_email_desk .entry_form_desk input {
+  width: 100%;
+  height: 30px;
+  border-radius: 2px;
+  border: 1.5px solid;
+}
+.main_header_section .send_email_desk .entry_form_desk button {
+  width: 75%;
+  margin: 20px auto auto auto;
+  padding: 10px;
+  border-radius: 5px;
+  border: 0px solid;
+  background-color: #6A00FF;
+  font-family: "Source sans 3";
+  font-size: large;
+  color: white;
+  box-shadow: 5px 5px black;
+  cursor: pointer;
+}
+
+.send_email {
+  display: none;
 }
 
 .about_us {
@@ -90,5 +193,6 @@
 }
 .end_main_infos .real_footer h3 {
   font-size: 0.7em;
+  font-weight: lighter;
   margin: auto;
 }/*# sourceMappingURL=index.module.css.map */
