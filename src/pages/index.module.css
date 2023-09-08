@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Aladin&family=Nunito:ital,wght@0,200;0,300;1,200;1,400;1,600;1,700&family=Roboto:wght@100;300;400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;500&display=swap");
 .main_container {
-  background-color: rgba(245, 126, 0, 0.25);
-  height: 100vh;
+  background-color: #FFF3E5;
   margin: 0px;
+  padding: 0px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  position: absolute;
 }
 .main_header .logo_titulo {
   display: flex;
@@ -102,25 +103,33 @@
 
 .main_header_section {
   display: flex;
+  align-items: center;
+  margin: 0px 0px 70px 0px;
+  background-image: linear-gradient(180deg, rgba(255, 243, 229, 0.75) 80%, rgb(255, 243, 229)), url("../../public/images/background1.jpg");
+}
+.main_header_section .main_titulo_email {
+  width: 100%;
+  display: flex;
 }
 .main_header_section .main_titulo {
   text-align: left;
   max-width: 576px;
   text-align: center;
-  margin: 10px auto 0px auto;
+  margin: -100px auto 0px auto;
   font-size: 2.2em;
   font-Family: "Source sans 3";
 }
 .main_header_section .main_titulo span {
   color: #F57E00;
-  text-shadow: 1px 1px 5px black;
+  text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
 }
 .main_header_section .send_email_desk {
   max-width: 480px;
   padding: 30px;
   border: 2px solid;
-  margin: auto;
+  margin: -100px auto 0px auto;
   box-Shadow: 8px 8px #3F0957;
+  background-color: #FFF3E5;
 }
 .main_header_section .send_email_desk h3 {
   margin: 0px auto 10px auto;
@@ -129,6 +138,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "source sans 3";
 }
 .main_header_section .send_email_desk .entry_form_desk p {
   margin: 10px auto 5px 0px;
@@ -138,6 +148,7 @@
   height: 30px;
   border-radius: 2px;
   border: 1.5px solid;
+  padding: 5px 5px 5px 8px;
 }
 .main_header_section .send_email_desk .entry_form_desk button {
   width: 75%;
@@ -158,32 +169,130 @@
 }
 
 .about_us {
-  font-family: "imprima";
-  margin: 50px 10px 10px 10px;
-}
-.about_us h2 {
-  font-size: 1.5em;
-}
-.about_us .block_copy {
-  margin: 10px 25px;
-  max-width: 290px;
-  padding: 5px;
+  width: 95%;
+  max-width: 1200px;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 50px auto 110px auto;
   border: 2px solid;
-  box-Shadow: -8px -8px #3F0957;
-  font-size: 1.3em;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  box-Shadow: 8px 8px #3F0957;
+  position: relative;
+  font-family: "source sans 3";
+}
+.about_us .detail_about_us {
+  position: absolute;
+  left: -35px;
+  top: -35px;
+  z-index: 1;
+}
+.about_us .itens_about_us {
+  width: 100%;
+  padding: 30px 0px 30px 0px;
+  background-color: transparent;
+  background-image: url("../../public/images/background2.jpg");
+  background-position: -5px -5px;
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+.about_us .itens_about_us .aprovacao,
+.about_us .itens_about_us .produtos,
+.about_us .itens_about_us .lojas {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 170px;
+  justify-content: center;
+  transition: 0.5s;
+}
+.about_us .itens_about_us .aprovacao svg,
+.about_us .itens_about_us .produtos svg,
+.about_us .itens_about_us .lojas svg {
+  margin: auto;
+}
+.about_us .itens_about_us .aprovacao h3,
+.about_us .itens_about_us .produtos h3,
+.about_us .itens_about_us .lojas h3 {
+  margin: auto;
+  font-size: 2em;
+}
+.about_us .itens_about_us .aprovacao span,
+.about_us .itens_about_us .produtos span,
+.about_us .itens_about_us .lojas span {
+  margin: auto;
+  font-size: 1em;
+}
+.about_us .itens_about_us .aprovacao:hover, .about_us .itens_about_us .produtos:hover, .about_us .itens_about_us .lojas:hover {
+  transform: translateY(-6px);
 }
 
 .end_main_infos {
-  height: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
   width: 100%;
-  background-color: rgba(245, 126, 0, 0);
+  background-color: #111111;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0px 0px 0px;
+}
+.end_main_infos .util {
+  display: flex;
+  width: 90%;
+  padding: 80px 0px 80px 0px;
+  font-family: "Source Sans 3";
+}
+.end_main_infos .util .informacoes {
+  margin: 0px auto;
+  max-width: 33%;
+}
+.end_main_infos .util .informacoes ul {
+  list-style: none;
+}
+.end_main_infos .util .informacoes ul li {
+  transition: 0.1s;
+  margin: 5px 0px;
+  cursor: pointer;
+}
+.end_main_infos .util .informacoes ul li:hover {
+  transform: translateX(5px);
+}
+.end_main_infos .util .sac {
+  margin: auto;
+  max-width: 30%;
+}
+.end_main_infos .util .sac p {
+  font-weight: 300;
+}
+.end_main_infos .util .social {
+  margin: 0px auto;
+  max-width: 33%;
+}
+.end_main_infos .util .social ul {
+  list-style: none;
+}
+.end_main_infos .util .social ul li {
+  transition: 0.1s;
+  margin: 5px 0px;
+  cursor: pointer;
   display: flex;
   align-items: center;
 }
+.end_main_infos .util .social ul li svg {
+  transition: 0.5s;
+}
+.end_main_infos .util .social ul li p {
+  margin: 0px 0px 0px 5px;
+}
+.end_main_infos .util .social ul li:hover {
+  transform: translateX(5px);
+}
 .end_main_infos .real_footer {
-  background-color: #0d0d0d;
+  background-color: #111111;
   height: -moz-fit-content;
   height: fit-content;
   width: 100%;
@@ -195,4 +304,32 @@
   font-size: 0.7em;
   font-weight: lighter;
   margin: auto;
+}
+
+@media screen and (max-width: 400px) {
+  .main_header .logo_titulo {
+    flex-direction: column;
+  }
+  .main_titulo_email {
+    margin-top: 100px;
+    flex-direction: column;
+  }
+  .itens_about_us {
+    flex-direction: column;
+    background-image: linear-gradient(150deg, transparent, black);
+  }
+  .util {
+    flex-direction: column;
+  }
+  .util .informacoes, .util .sac, .util .social {
+    max-width: 100% !important;
+    text-align: center;
+    margin: 10px auto !important;
+  }
+  .util .informacoes li, .util .sac li, .util .social li {
+    margin: 5px auto;
+  }
+  .real_footer {
+    font-size: 0.9em;
+  }
 }/*# sourceMappingURL=index.module.css.map */
