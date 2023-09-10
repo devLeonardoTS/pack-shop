@@ -360,22 +360,134 @@
 }
 
 
-@media screen and (max-width: 400px)
+@media screen and (max-width: 500px)
 {
-  .main_header
-  {
-    .logo_titulo {
-        flex-direction: column;
-      }
-  }
-    .main_titulo_email {
-      margin-top: 100px;
-      flex-direction: column;
-    }
-    .itens_about_us
+    .main_header
     {
+      .logo_titulo {
+          flex-direction: column;
+          h1
+          {
+            position: absolute;
+            left: 10px;
+            top: 103px;
+            font-size: 1.5em;
+            margin: 0px;
+          }
+        }
+      .about_seemore
+      {
+        margin: 0px;
+        span:nth-child(1)
+        {
+          display: none;
+        }
+        span:nth-child(2)
+        {
+          display: flex;
+          width: max-content;
+          align-items: center;
+          margin: 0px auto 0px -10px;
+          font-size: 1.1em;
+          svg
+          {
+            margin: auto 5px;
+            transition: 0.5s;
+          }
+        }
+        span:nth-child(2)::after {
+          content: '';
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: #F57E00;
+          top: 80%;
+          left: -5.5%;
+          // display: none;
+        }
+        span:nth-child(2):hover::after
+        {
+          width: 100%;
+        }
+        span:nth-child(2):active
+        {
+          svg
+          {
+            transform: translateX(10px);
+          }
+        }
+      }
+    }
+
+    .main_header_section
+    {
+      padding: 160px 0px 0px 0px;
+      background-size: cover;
+      background-position: 50% 0px;
+      background-repeat: no-repeat;
+          background-image: linear-gradient(180deg, rgba(255, 243, 229, 0.75) 90%, rgb(255, 243, 229)), url("../../public/images/background1.jpg");
+    }
+    .main_titulo_email {
+      // margin-top: 100px;
+      margin: auto;
       flex-direction: column;
-      background-image: linear-gradient(150deg, transparent, black);
+      .main_titulo
+      {
+        margin: 30px auto;
+        justify-content: center;
+        font-size: 2em;
+        span:nth-child(2)
+        {
+          width: 100%;
+          display: block;
+          font-size: 31px;
+          justify-content: center;
+          br
+          {
+            display: none;
+          }
+        }
+      }
+      .send_email_desk
+      {
+        width: 85%;
+        margin: auto;
+        .entry_form_desk
+        {
+          button
+          {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .about_us
+    {
+      width: 85%;
+      .itens_about_us {
+          flex-direction: column;
+          background-image: linear-gradient(150deg, transparent, transparent);
+          background-repeat: no-repeat;
+          overflow: hidden;
+        }
+      .itens_about_us::before
+      {
+        content: "";
+        position: absolute;
+        top: -10px;
+        width: 100%;
+        height: 110%;
+        background-image: url("../../public/images/background2.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        // background-image: linear-gradient(150deg, transparent, black);
+        background-size: cover;
+        background-position: 50%;
+        background-repeat: no-repeat;
+        transform: rotatez(0deg);
+        z-index: -1;
+      }
     }
     .util
     {

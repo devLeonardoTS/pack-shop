@@ -14,7 +14,10 @@ export default function Home() {
      const novoEstilo = {
        //  backgroundColor: "red",
        //  color: "red",
-       height: window.innerHeight,
+
+       //  height: window.innerHeight,
+       height:
+         window.innerWidth < 400 ? "fit-content" : `${window.innerHeight}px`,
        // Outros estilos que você desejar
      };
 
