@@ -47,14 +47,6 @@
         margin: auto 0px auto auto;
       }
   }
-  .welcome
-  {
-    font-family: 'Bebas Neue';
-    color: white;
-    // text-decoration: underline;
-    margin: auto 0px auto -2px;
-    // text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
-  }
   .about_seemore {
     position: relative;
     color: white;
@@ -89,6 +81,14 @@
       margin: 0px 10px 0px 10px;
       cursor: pointer;
       // font-family: cursive;
+      a
+      {
+        text-decoration: none;
+      }
+      a:visited {
+          color: black;
+          
+        }
       svg
       {
         width: 15px;
@@ -113,6 +113,7 @@
       top: 80%;
       left: 34.7%;
       transition: 0.5s;
+      
     }
     span:nth-child(2):hover::after
     {
@@ -186,7 +187,7 @@
         width: 75%;
         margin: 20px auto auto auto;
         padding: 10px;
-        border-radius: 5px;
+        // border-radius: 5px;
         border: 0px solid;
         background-color: #6A00FF;
         font-family: 'Source sans 3';
@@ -194,6 +195,10 @@
         color: white;
         box-shadow: 5px 5px black;
         cursor: pointer;
+      }
+      div
+      {
+        margin: 20px auto -20px auto;
       }
     }
   }

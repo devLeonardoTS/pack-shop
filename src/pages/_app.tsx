@@ -9,9 +9,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={inter.className} style={{
-      height: "100%"
-    }}>
+    <div
+      className={inter.className}
+      style={{
+        height: "100%",
+      }}
+    >
       <Injectors>
         <PrimaryLayout>
           <Component {...pageProps} />

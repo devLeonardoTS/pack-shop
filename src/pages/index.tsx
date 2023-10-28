@@ -1,33 +1,56 @@
 import BaseEmailEnter from "@/components/templates/BaseEmailEnter";
 // import logo from "./images/logo1.svg"
-import styles from "./index.module.scss"
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import styles from "./index.module.scss";
 export default function Home() {
-   const [estilo, setEstilo] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+  useMutation<Error>;
+  const mutation = useMutation(async (formData: any) => {
+    const response = await axios
+      .post("https://pack-shop-api.onrender.com/v1/leads", formData)
+      .catch((error) => {
+        console.log(error.response.data);
+        setErrorMessage(error.response.data.message);
+        throw new Error(error.response.data.message);
+      });
+    setErrorMessage("");
+    return response;
+  });
 
-   // Função para atualizar o estilo quando a div for clicada
-   const alterarEstilo = () => {
-     // Defina o novo estilo aqui
-     const novoEstilo = {
-       //  backgroundColor: "red",
-       //  color: "red",
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
 
-       //  height: window.innerHeight,
-       height:
-         window.innerWidth < 400 ? "fit-content" : `${window.innerHeight}px`,
-       // Outros estilos que você desejar
-     };
+    const email = e.target.email.value; // Supondo que você tenha um campo de entrada com o nome 'email'
 
-     // Atualize o estado com o novo estilo
-     setEstilo(novoEstilo);
-   };
-    useEffect(() => {
-      // Chame a função alterarEstilo quando o componente for montado (página carregada)
-      alterarEstilo();
-    }, []);
+    mutation.mutate({ email: email });
+  };
+  const [estilo, setEstilo] = useState({});
+  // Função para atualizar o estilo quando a div for clicada
+  const alterarEstilo = () => {
+    // Defina o novo estilo aqui
+    const novoEstilo = {
+      //  backgroundColor: "red",
+      //  color: "red",
+
+      //  height: window.innerHeight,
+      height:
+        window.innerWidth < 400 ? "fit-content" : `${window.innerHeight}px`,
+      // Outros estilos que você desejar
+    };
+
+    // Atualize o estado com o novo estilo
+    setEstilo(novoEstilo);
+  };
+  useEffect(() => {
+    // Chame a função alterarEstilo quando o componente for montado (página carregada)
+    alterarEstilo();
+  }, []);
+
+  
   return (
     <>
       <Head>
@@ -52,7 +75,8 @@ export default function Home() {
           <div className={styles.about_seemore}>
             <span>SOBRE NÓS</span>
             <span>
-              ACESSE O MARKETPLACE
+              <a href="mainpage">ACESSE O MARKETPLACE</a>
+              {/* <Link to="/main">Ir para a página Sobre</Link> */}
               <svg
                 width="13"
                 height="10"
@@ -82,12 +106,21 @@ export default function Home() {
             </h2>
             <div className={styles.send_email_desk}>
               <h3>Saiba do lançamento antes de todo mundo!</h3>
-              <form className={styles.entry_form_desk}>
+              <form className={styles.entry_form_desk} onSubmit={handleSubmit}>
                 <p>Digite seu e-mail</p>
-                <input placeholder="Digite aqui" />
+                <input
+                  placeholder="Digite aqui"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                />
                 <button type="submit" aria-label="add-message-to-list-btn">
-                  Me avisa PackShop!
+                  {mutation.isLoading ? "Enviando..." : "Me avisa PackShop!"}
                 </button>
+
+                {mutation.isError ? <div>{errorMessage} A </div> : null}
+                {mutation.isSuccess ? <div>Sucesso!</div> : null}
               </form>
             </div>
           </div>

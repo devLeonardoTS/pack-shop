@@ -1,0 +1,262 @@
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Bebas+Neue&family=Poppins:wght@500&display=swap");
+.main_container_main header {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: var(--cor_cinza1);
+  font-family: "Bebas Neue", sans-serif;
+}
+.main_container_main header .top_infos_header {
+  width: 100%;
+  height: 25px;
+  background-color: var(--cor_cinza1);
+  display: flex;
+  box-shadow: 0px 0px 10px black;
+  position: absolute;
+}
+.main_container_main header .top_infos_header h2 {
+  font-size: 1.5em;
+}
+.main_container_main header .top_infos_header .date_weather_header {
+  width: 10%;
+  background-color: var(--cor_cinza1);
+  display: flex;
+  align-items: center;
+  padding: 0px 3px 0px 3px;
+}
+.main_container_main header .top_infos_header .date_weather_header svg {
+  width: 22px;
+  margin: 2px 7px 0px 7px;
+}
+.main_container_main header .top_infos_header .social_media_header {
+  width: 8%;
+  background-color: var(--cor_cinza1);
+  display: flex;
+  align-items: center;
+  padding: 0px 3px 0px 3px;
+}
+.main_container_main header .top_infos_header .social_media_header a {
+  display: flex;
+  align-items: center;
+  padding: 0px 0px 0px 0px;
+}
+.main_container_main header .top_infos_header .social_media_header svg {
+  width: 1.5em;
+}
+.main_container_main header .top_infos_header .social_media_header a:nth-child(2) {
+  margin: 0px 0px 0px 0px;
+}
+.main_container_main header .top_infos_header .social_media_header a:nth-child(2) svg {
+  margin: 1px 0px 0px 0px;
+  width: 1.85em;
+}
+.main_container_main header .top_infos_header .mais_vendidos_header {
+  width: 56%;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "ABeeZee", sans-serif;
+  font-size: 1.17em;
+  border-right: 3px solid;
+  padding: 0px 3px 0px 3px;
+}
+.main_container_main header .top_infos_header .mais_vendidos_header ul {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.main_container_main header .top_infos_header .mais_vendidos_header ul li {
+  list-style: none;
+  width: 25%;
+  margin: auto;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 13px;
+  transition: 0.35s;
+  cursor: pointer;
+}
+.main_container_main header .top_infos_header .mais_vendidos_header ul li:hover {
+  font-size: 13.5px;
+  color: orangered;
+}
+.main_container_main header .top_infos_header .idioma_header {
+  width: 13%;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 3px solid;
+  border-right: 3px solid;
+  padding: 0px 0px 0px 0px;
+  position: relative;
+  z-index: 2;
+}
+.main_container_main header .top_infos_header .idioma_header .idiom_selected_header {
+  background-color: #d9d9d9;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0px 3px;
+}
+.main_container_main header .top_infos_header .idioma_header .idiom_selected_header h2 {
+  width: 100%;
+  text-align: center;
+  cursor: default;
+}
+.main_container_main header .top_infos_header .idioma_header .idiom_selected_header span {
+  display: flex;
+  align-items: end;
+  padding-top: 0px 0px 0px 0px;
+  cursor: pointer;
+}
+.main_container_main header .top_infos_header .idioma_header .idioma_select_header {
+  position: absolute;
+  z-index: -1;
+  top: 100%;
+  background-color: #d9d9d9;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 2px 3px 0px 3px;
+  align-items: center;
+  cursor: pointer;
+  border: 3px solid;
+  transition: 0.35s;
+}
+.main_container_main header .top_infos_header .idioma_header .idioma_select_header:hover {
+  background-color: #bebcbc;
+}
+.main_container_main header .top_infos_header .cambio_header {
+  width: 13%;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 3px solid;
+  padding: 0px 3px 0px 3px;
+  position: relative;
+}
+.main_container_main header .top_infos_header .cambio_header .camb_selected_header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  background-color: var(--cor_cinza1);
+  z-index: 2;
+  width: 100%;
+}
+.main_container_main header .top_infos_header .cambio_header h2 {
+  margin: 0px 0px 0px auto;
+}
+.main_container_main header .top_infos_header .cambio_header svg {
+  width: 1.95em;
+  margin: -3px 4px 0px 4px;
+}
+.main_container_main header .top_infos_header .cambio_header svg:nth-child(2) {
+  width: 1.92em;
+  margin: -3px 4px 0px 2px;
+}
+.main_container_main header .top_infos_header .cambio_header svg:nth-child(3) {
+  margin: 0px 0px 0px auto;
+}
+.main_container_main header .top_infos_header .cambio_header .camb_select_header {
+  position: absolute;
+  z-index: 0;
+  top: 0%;
+  background-color: #d9d9d9;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 2px 3px 0px 3px;
+  align-items: center;
+  cursor: pointer;
+  border: 3px solid;
+  transition: 0.35s;
+}
+.main_container_main header .top_infos_header .cambio_header .camb_select_header svg {
+  margin: 0px auto 2px 2px;
+}
+.main_container_main header .top_infos_header .cambio_header .camb_select_header h2 {
+  margin: 0px 0px 0px auto;
+}
+.main_container_main header .middle_infos_header {
+  width: 100%;
+  height: 120px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--cor_cinza2);
+  border-left: 4px solid;
+  border-right: 4px solid;
+  border-bottom: 4px solid;
+}
+.main_container_main header .middle_infos_header .logo_titulo_header {
+  display: flex;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  width: 25%;
+}
+.main_container_main header .middle_infos_header .logo_titulo_header img {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 120px;
+  margin: -15px 10px 0px 0px;
+}
+.main_container_main header .middle_infos_header .logo_titulo_header h1 {
+  font-family: "Aladin";
+  color: white;
+  margin: 0px 0px 0px -20px;
+  font-size: 2em;
+  font-weight: 100;
+}
+.main_container_main header .middle_infos_header .pesquisa_produtos_header {
+  width: 47%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_container_main header .middle_infos_header .pesquisa_produtos_header input {
+  width: 90%;
+  height: 65px;
+  border: 3.5px solid;
+  padding: 10px;
+  font-size: 1.2em;
+}
+.main_container_main header .middle_infos_header .conta_infos_header {
+  width: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_container_main header .middle_infos_header .conta_infos_header .perfil_header {
+  width: 85%;
+  height: 65px;
+  border: 3.5px solid;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0px 5px 0px 5px;
+}
+.main_container_main header .middle_infos_header .conta_infos_header .perfil_header span {
+  margin: auto;
+  color: white;
+  font-size: 1.7em;
+  text-decoration: underline;
+}
+.main_container_main header .middle_infos_header .carrinho_header {
+  width: 10%;
+}
+.main_container_main header .footer_infos_header {
+  width: 98%;
+  height: 33px;
+  border-left: 4px solid;
+  border-right: 4px solid;
+  border-bottom: 4px solid;
+  margin: auto;
+}/*# sourceMappingURL=mainpage.module.css.map */
