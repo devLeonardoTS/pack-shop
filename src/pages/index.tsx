@@ -1,3 +1,4 @@
+import BaseEmailEnter from "@/components/templates/BaseEmailEnter";
 // import logo from "./images/logo1.svg"
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -92,7 +93,46 @@ export default function Home() {
             </span>
           </div>
         </header>
-        
+        <section className={styles.main_header_section} style={estilo}>
+          <div className={styles.main_titulo_email}>
+            <h2 className={styles.main_titulo}>
+              Encontre o que <span>você </span>
+              procura
+              <span>
+                <br /> no melhor marketplace
+                <br />
+              </span>
+              para suas compras
+            </h2>
+            <div className={styles.send_email_desk}>
+              <h3>Saiba do lançamento antes de todo mundo!</h3>
+              <form className={styles.entry_form_desk} onSubmit={handleSubmit}>
+                <p>Digite seu e-mail</p>
+                <input
+                  placeholder="Digite aqui"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                />
+                <button type="submit" aria-label="add-message-to-list-btn">
+                  {mutation.isLoading ? "Enviando..." : "Me avisa PackShop!"}
+                </button>
+
+                {mutation.isError ? <div>{errorMessage} A </div> : null}
+                {mutation.isSuccess ? <div>Sucesso!</div> : null}
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <div className={styles.send_email}>
+          <BaseEmailEnter />
+        </div>
+        {/* <div className={styles.about_us}>
+          <h2>PackShop, encontre o que você precisa, venda e sem limites.</h2>
+          <div className={styles.block_copy}>
+            <p>
               Redefinindo sua experiência de compras com produtos bem
               detalhados, filtros bem definidos, tendo uma das menores taxas e
               maiores benefícios do mercado.
