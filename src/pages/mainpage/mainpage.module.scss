@@ -295,7 +295,7 @@
                         }
                         svg:active
                         {
-                            transform: rotateZ(180deg)translateY(-7px);
+                            transform: rotateZ(180deg)translateY(-3px);
                             
                         }
                     }
@@ -511,6 +511,11 @@
                 h3
                 {
                     margin: 0px auto;
+                    cursor: pointer;
+                }
+                h3:active ~ svg
+                {
+                    transform: rotateZ(180deg) translateY(-2px);
                 }
                 svg
                 {
@@ -519,16 +524,25 @@
                     height: 15px;
                     position: absolute;
                     right: 5px;
+                    cursor: pointer;
+                    transition: 0.2s;
+                }
+                svg:active
+                {
+                    transform: rotateZ(180deg) translateY(-2px);
                 }
                 .categorias
                 {
-                    width: 300px;
+                    width: 310px;
                     height: 0px;
+                    // height: calc(100vh - 153px);
+                    max-height: 535px;
                     position: absolute;
                     background-color: var(--cor_cinza1);
                     top: 100%;
                     left: -3.5px;
                     overflow: hidden;
+                    transition: 0.3s;
                     ul
                     {
                         padding: 5px 10px;
@@ -550,11 +564,28 @@
                                 font-weight: 100;
                                 font-family: 'Imprima',
                                     sans-serif;
+                                transition: 0.2s;
+                                cursor: pointer;
+                            }
+                            p:hover::after
+                            {
+                                content: " >";
+                            }
+                            p:hover
+                            {
+                                transform: translateX(5px);
                             }
                             span
                             {
                                 font-family: 'ABeeZee',sans-serif;
                                 font-weight: bolder;
+                                transition: 0.2s;
+                                cursor: pointer;
+                            }
+                            span:hover
+                            {
+                                color: orangered;
+                                transform: translateX(5px);
                             }
                         }
                     }

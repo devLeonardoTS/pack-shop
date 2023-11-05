@@ -253,7 +253,7 @@
   cursor: pointer;
 }
 .main_container_main header .middle_infos_header .pesquisa_produtos_header form .categoria_form_search svg:active {
-  transform: rotateZ(180deg) translateY(-7px);
+  transform: rotateZ(180deg) translateY(-3px);
 }
 .main_container_main header .middle_infos_header .pesquisa_produtos_header form input[type=text] {
   width: 100%;
@@ -427,6 +427,10 @@
 }
 .main_container_main header .footer_infos_header .categorias_header h3 {
   margin: 0px auto;
+  cursor: pointer;
+}
+.main_container_main header .footer_infos_header .categorias_header h3:active ~ svg {
+  transform: rotateZ(180deg) translateY(-2px);
 }
 .main_container_main header .footer_infos_header .categorias_header svg {
   transform: rotateZ(180deg);
@@ -434,15 +438,22 @@
   height: 15px;
   position: absolute;
   right: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.main_container_main header .footer_infos_header .categorias_header svg:active {
+  transform: rotateZ(180deg) translateY(-2px);
 }
 .main_container_main header .footer_infos_header .categorias_header .categorias {
-  width: 300px;
+  width: 310px;
   height: 0px;
+  max-height: 535px;
   position: absolute;
   background-color: var(--cor_cinza1);
   top: 100%;
   left: -3.5px;
   overflow: hidden;
+  transition: 0.3s;
 }
 .main_container_main header .footer_infos_header .categorias_header .categorias ul {
   padding: 5px 10px;
@@ -462,10 +473,24 @@
 .main_container_main header .footer_infos_header .categorias_header .categorias ul li p {
   font-weight: 100;
   font-family: "Imprima", sans-serif;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.main_container_main header .footer_infos_header .categorias_header .categorias ul li p:hover::after {
+  content: " >";
+}
+.main_container_main header .footer_infos_header .categorias_header .categorias ul li p:hover {
+  transform: translateX(5px);
 }
 .main_container_main header .footer_infos_header .categorias_header .categorias ul li span {
   font-family: "ABeeZee", sans-serif;
   font-weight: bolder;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.main_container_main header .footer_infos_header .categorias_header .categorias ul li span:hover {
+  color: orangered;
+  transform: translateX(5px);
 }
 .main_container_main header .footer_infos_header .util_header {
   width: 90%;

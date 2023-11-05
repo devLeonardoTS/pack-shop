@@ -43,6 +43,16 @@ export default function main() {
       height: categoria_pesquisa.height == "0%" ? "404px" : "0%",
     });
   };
+
+  const [categorias_loja, setcategoria_lojaStyle] = useState({
+    height: "0%",
+  });
+  const open_categorias_loja = () => {
+    setcategoria_lojaStyle({
+      ...categorias_loja,
+      height: categorias_loja.height == "0%" ? "calc(100vh - 153px)" : "0%",
+    });
+  };
   return (
     <main className={styles.main_container_main}>
       <header>
@@ -419,7 +429,7 @@ export default function main() {
               <FaShoppingBasket />
               <FaShoppingBasket />
               <div className={styles.carrinho_acumulado}>
-                <span>11</span>
+                <span>0</span>
               </div>
             </div>
           </div>
@@ -427,9 +437,9 @@ export default function main() {
 
         <section className={styles.footer_infos_header}>
           <div className={styles.categorias_header}>
-            <h3>CATEGORIAS</h3>
-            <IoTriangleSharp />
-            <div className={styles.categorias}>
+            <h3 onClick={open_categorias_loja}>CATEGORIAS</h3>
+            <IoTriangleSharp onClick={open_categorias_loja} />
+            <div className={styles.categorias} style={categorias_loja}>
               <ul>
                 <li>
                   <h2>DESTAQUES</h2>
@@ -439,10 +449,10 @@ export default function main() {
                 </li>
                 <li>
                   <h2>COMPRA POR CATEGORIA</h2>
-                  <p>Alimentos e Babidas &gt;</p>
-                  <p>Beleza e Cuidados Pessoais &gt;</p>
-                  <p>Cozinha &gt;</p>
-                  <p>Games e Consoles &gt;</p>
+                  <p>Alimentos e Babidas</p>
+                  <p>Beleza e Cuidados Pessoais</p>
+                  <p>Cozinha</p>
+                  <p>Games e Consoles</p>
                   <span>Ver tudo</span>
                 </li>
                 <li>
