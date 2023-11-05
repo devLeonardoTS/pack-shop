@@ -75,7 +75,7 @@ export default function Home() {
           <div className={styles.about_seemore}>
             <span>SOBRE NÓS</span>
             <span>
-              <a href="mainpage">ACESSE O MARKETPLACE</a>
+              <a href="login-usu">ACESSE O MARKETPLACE</a>
               {/* <Link to="/main">Ir para a página Sobre</Link> */}
               <svg
                 width="13"
