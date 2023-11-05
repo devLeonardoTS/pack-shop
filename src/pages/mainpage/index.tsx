@@ -2,6 +2,10 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import styles from "./mainpage.module.scss"
+import { FaShoppingBasket } from "react-icons/fa";
+import { BiSearchAlt } from "react-icons/bi";
+import { IoTriangleSharp } from "react-icons/io5";
+
 
 export default function main() {
   const [divStyle, setDivStyle] = useState({
@@ -18,6 +22,26 @@ export default function main() {
   });
   const moveDiv2 = (qual: Object) => {
     setDivStyle2({ ...divStyle2, top: divStyle2.top == "0%" ? "100%" : "0%" });
+  };
+
+  const [perfil_opt, setperfilStyle] = useState({
+    height: "0%",
+  });
+  const open_perfil_opt = (qual: Object) => {
+    setperfilStyle({
+      ...perfil_opt,
+      height: perfil_opt.height == "0%" ? "300px" : "0%",
+    });
+  };
+
+  const [categoria_pesquisa, setcategoria_pesquisaStyle] = useState({
+    height: "0%",
+  });
+  const open_categorias_pesquisa = () => {
+    setcategoria_pesquisaStyle({
+      ...categoria_pesquisa,
+      height: categoria_pesquisa.height == "0%" ? "404px" : "0%",
+    });
   };
   return (
     <main className={styles.main_container_main}>
@@ -102,7 +126,7 @@ export default function main() {
               </svg>
             </a>
           </div>
-          {/* Futuras tags dinãmicas */}
+          {/* Futuras tags dinâmicas */}
           <div className={styles.mais_vendidos_header}>
             <ul>
               <li>
@@ -261,7 +285,7 @@ export default function main() {
             <Image
               className={styles.logo_main_header}
               priority
-              src="/images/logo.svg"
+              src="/images/logo1-clean.svg"
               height={250}
               width={125}
               alt="Logo PackShoP"
@@ -269,7 +293,66 @@ export default function main() {
             <h1>PACKSHOP</h1>
           </div>
           <div className={styles.pesquisa_produtos_header}>
-            <input type="text" name="" id="" placeholder="" />
+            <form action="" method="get" className={styles.form_achar_produto}>
+              <div className={styles.categoria_form_search}>
+                <h3 onClick={open_categorias_pesquisa}>TODOS</h3>
+                <IoTriangleSharp onClick={open_categorias_pesquisa} />
+              </div>
+              <input type="text" name="" id="" placeholder="" />
+              <BiSearchAlt className={styles.form_header_esquisar} />
+              <div
+                className={styles.categorias_form_header}
+                style={categoria_pesquisa}
+              >
+                <ul>
+                  <li>
+                    <h2>ALIMENTOS</h2>
+                  </li>
+                  <li>
+                    <h2>AUTOMOTIVO</h2>
+                  </li>
+                  <li>
+                    <h2>BEBÊS</h2>
+                  </li>
+                  <li>
+                    <h2>BELEZA</h2>
+                  </li>
+                  <li>
+                    <h2>BOLSAS, MALAS E MOCHILAS</h2>
+                  </li>
+                  <li>
+                    <h2>BRINQUEDOS E JOGOS</h2>
+                  </li>
+                  <li>
+                    <h2>CASA</h2>
+                  </li>
+                  <li>
+                    <h2>CD E VINIL</h2>
+                  </li>
+                  <li>
+                    <h2>COMPUTADOES E INFORMÁTICA</h2>
+                  </li>
+                  <li>
+                    <h2>COZINHA</h2>
+                  </li>
+                  <li>
+                    <h2>DVD E BLU-RAY</h2>
+                  </li>
+                  <li>
+                    <h2>COZINHA</h2>
+                  </li>
+                  <li>
+                    <h2>ELETRÔNICOS</h2>
+                  </li>
+                  <li>
+                    <h2>ELETRODOMÉSTICOS</h2>
+                  </li>
+                  <li>
+                    <h2>ESPORTES E AVENTURAS</h2>
+                  </li>
+                </ul>
+              </div>
+            </form>
           </div>
           <div className={styles.conta_infos_header}>
             <div className={styles.perfil_header}>
@@ -285,8 +368,9 @@ export default function main() {
                   fill="white"
                 />
               </svg>
-              <span>RACCOON PACK</span>
+              <span>OLÁ, FAÇA SEU LOGIN</span>
               <svg
+                onClick={open_perfil_opt}
                 width="26"
                 height="23"
                 viewBox="0 0 26 23"
@@ -300,16 +384,110 @@ export default function main() {
                   stroke-width="3.5"
                 />
               </svg>
+              <div className={styles.perfil_options} style={perfil_opt}>
+                <ul className={styles.sem_login}>
+                  <li>
+                    <h3>FAÇA SEU LOGIN OU REGISTRE-SE</h3>
+                  </li>
+                  <li>
+                    <h3>SEUS PEDIDOS</h3>
+                  </li>
+                  <li>
+                    <h3>CARTEIRA E GIFT CARDS</h3>
+                  </li>
+                  <li>
+                    <h3>SUAS ASSINATURAS</h3>
+                  </li>
+                  <li>
+                    <h3>SUA LISTA DE DESEJOS</h3>
+                  </li>
+                  <li>
+                    <h3>TEMA: CLARO (APARÊNCIA)</h3>
+                  </li>
+                  <li>
+                    <h3>MODO DALTONISMO</h3>
+                  </li>
+                  <li>
+                    <h3>CONFIGURAÇÕES</h3>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className={styles.perfil_options_header}></div>
           </div>
-          <div className={styles.carrinho_header}></div>
+          <div className={styles.carrinho_header}>
+            <div className={styles.carrinho}>
+              <FaShoppingBasket />
+              <FaShoppingBasket />
+              <div className={styles.carrinho_acumulado}>
+                <span>11</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className={styles.footer_infos_header}>
-          <div className={styles.categorias_header}></div>
+          <div className={styles.categorias_header}>
+            <h3>CATEGORIAS</h3>
+            <IoTriangleSharp />
+            <div className={styles.categorias}>
+              <ul>
+                <li>
+                  <h2>DESTAQUES</h2>
+                  <p>Mais Vendidos</p>
+                  <p>Novidades na PackShop</p>
+                  <p>Produtos em Alta</p>
+                </li>
+                <li>
+                  <h2>COMPRA POR CATEGORIA</h2>
+                  <p>Alimentos e Babidas &gt;</p>
+                  <p>Beleza e Cuidados Pessoais &gt;</p>
+                  <p>Cozinha &gt;</p>
+                  <p>Games e Consoles &gt;</p>
+                  <span>Ver tudo</span>
+                </li>
+                <li>
+                  <h2>CONTEÚDO ORIGINAL</h2>
+                  <p>Assine e Poupe</p>
+                  <p>Serviços por Assinatura</p>
+                  <p>Gits Cards e Carteira digital</p>
+                  <span>Ver tudo</span>
+                </li>
+                <li>
+                  <h2>Programas e recursos</h2>
+                  <p>Dicas de Presentes</p>
+                  <p>Venda na PackShop</p>
+                  <p>Outlet da Pack</p>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className={styles.util_header}>
-            
+            <ul>
+              <li>
+                <h2>OFERTAS DO DIA</h2>
+              </li>
+              <li>
+                <h2>HISTÓRICO</h2>
+              </li>
+              <li>
+                <h2>MAIS VENDIDOS</h2>
+              </li>
+              <li>
+                <h2>NOVIDADES DA PACKSHOP</h2>
+              </li>
+              <li>
+                <h2>VENDA</h2>
+              </li>
+              <li>
+                <h2>PARCERIAS</h2>
+              </li>
+              <li>
+                <h2>QUEM SOMOS</h2>
+              </li>
+              <li>
+                <h2>FALE CONOSCO</h2>
+              </li>
+            </ul>
           </div>
         </section>
       </header>
