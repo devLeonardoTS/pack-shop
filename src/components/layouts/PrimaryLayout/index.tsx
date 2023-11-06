@@ -1,11 +1,18 @@
-import styles from "./index.module.scss";
+import Footer from "../Footer";
+import PrimaryNavbar from "../Navbars/PrimaryNavbar";
 
 export type PrimaryLayoutProps = {
   children?: React.ReactNode;
 };
 
 function PrimaryLayout({ children }: PrimaryLayoutProps) {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <>
+      <PrimaryNavbar />
+      {children}
+      <Footer />
+    </>
+  );
 }
 
 export default PrimaryLayout;

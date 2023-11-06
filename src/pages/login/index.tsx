@@ -1,10 +1,11 @@
+import LoginForm from "@/components/forms/LoginForm";
 import PrimaryLayout from "@/components/layouts/PrimaryLayout";
+import { NextPageWithLayout } from "@/pages/_app";
 import Head from "next/head";
 import { ReactElement } from "react";
 import style from "./index.module.scss";
-import { NextPageWithLayout } from "./_app";
 
-const MarketplaceHome: NextPageWithLayout = () => {
+const LoginPage: NextPageWithLayout = () => {
   return (
     <main className={style.container}>
       <Head>
@@ -14,14 +15,14 @@ const MarketplaceHome: NextPageWithLayout = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={style.content}>
-        <h1>Marketplace Front-Page</h1>
+        <LoginForm />
       </div>
     </main>
   );
 };
 
-MarketplaceHome.getLayout = function getLayout(page: ReactElement) {
+LoginPage.getLayout = function getLayout(page: ReactElement) {
   return <PrimaryLayout>{page}</PrimaryLayout>;
 };
 
-export default MarketplaceHome;
+export default LoginPage;

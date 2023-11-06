@@ -1,0 +1,32 @@
+.container {
+  min-width: 330px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 4px;
+
+  input {
+    padding: 4px;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    padding: 4px;
+    font-weight: bold;
+  }
+}

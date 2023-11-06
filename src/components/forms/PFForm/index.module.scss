@@ -1,0 +1,48 @@
+.container {
+  min-width: 330px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  h2 {
+    font-size: 16px;
+  }
+}
+
+.form .content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 4px;
+
+  input {
+    padding: 4px;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    padding: 4px;
+    font-weight: bold;
+  }
+}

@@ -5,8 +5,38 @@
 }
 
 html,
-body {
+body,
+#__next {
   min-height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+ul,
+ol,
+menu {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+.link:hover {
+  color: orange;
+  border-bottom: 1px solid orange;
+}
+
+.c-accent {
+  color: orange;
+}
+
+.dft-padding {
+  padding: 12px 24px;
+}
+
+.txt-sm {
+  font-size: 12px;
 }
