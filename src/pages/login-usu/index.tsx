@@ -6,8 +6,8 @@ import { SlSocialGoogle } from "react-icons/sl";
 import { IoEarth } from "react-icons/io5";
 import { SlEye } from "react-icons/sl";
 import { TbEyeClosed } from "react-icons/tb";
-import Top_Infos from "@/components/templates/topinfostemplate";
-export default function Home() {
+import Top_Infos_simples from "@/components/templates/topinfostemplate";
+export default function Login_usu() {
 
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [eyeclose, seteyeclose] = useState({
@@ -24,9 +24,7 @@ export default function Home() {
     };
     return (
       <main className={styles.main_container_main}>
-        <Top_Infos/>
-       
-
+        <Top_Infos_simples/>
         <section className={styles.login_info_form}>
           <div className={styles.sou_cliente}>
             <h3>

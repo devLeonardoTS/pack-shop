@@ -1,12 +1,13 @@
 import styles from "./index.module.scss";
 import { useState } from "react";
 import Image from "next/image";
+
 export type TopInfoTemplateProps = {
   children?: React.ReactNode;
   // Override these as needed - Remember, optional props go at the end.
 };
 
-function Top_Infos({ children }: TopInfoTemplateProps, text:string) {
+function Top_Infos_simples({ children }: TopInfoTemplateProps, text:string) {
     const [divStyle, setDivStyle] = useState({
       // display: "none",
       top: "0%",
@@ -127,15 +128,18 @@ function Top_Infos({ children }: TopInfoTemplateProps, text:string) {
         </div>
         <section className={styles.simple_middle}>
           <div className={styles.logo_titulo_header}>
-            <Image
-              className={styles.logo_main_header}
-              priority
-              src="/images/logo1-clean.svg"
-              height={250}
-              width={125}
-              alt="Logo PackShoP"
-            />
-            <h1>PACKSHOP</h1>
+            <a href="/login-usu">
+              {" "}
+              <Image
+                className={styles.logo_main_header}
+                priority
+                src="/images/logo1-clean.svg"
+                height={250}
+                width={125}
+                alt="Logo PackShoP"
+              />
+              <h1>PACKSHOP</h1>
+            </a>
           </div>
         </section>
       </header>
@@ -143,4 +147,4 @@ function Top_Infos({ children }: TopInfoTemplateProps, text:string) {
   );
 }
 
-export default Top_Infos;
+export default Top_Infos_simples;

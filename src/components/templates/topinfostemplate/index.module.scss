@@ -142,7 +142,14 @@ main
                     width: fit-content;
                     // background-color: aqua;
                     width: 25%;
-    
+                    a
+                    {
+                        display: flex;
+                        align-items: center;
+                        // background-color: green;
+                        height: 100%;
+                        text-decoration: none;
+                    }
                     img {
                         width: fit-content;
                         height: 120px;

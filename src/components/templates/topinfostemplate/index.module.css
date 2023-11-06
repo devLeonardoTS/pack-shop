@@ -118,6 +118,12 @@ main .header_main_top .simple_middle .logo_titulo_header {
   width: fit-content;
   width: 25%;
 }
+main .header_main_top .simple_middle .logo_titulo_header a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+}
 main .header_main_top .simple_middle .logo_titulo_header img {
   width: -moz-fit-content;
   width: fit-content;
