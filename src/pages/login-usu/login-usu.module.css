@@ -1,0 +1,244 @@
+.main_container_main {
+  height: 100vh;
+  background-color: var(--background-cinza1);
+  position: relative;
+  overflow: hidden;
+}
+.main_container_main header {
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: var(--background-cinza1);
+  font-family: "Bebas Neue", sans-serif;
+}
+.main_container_main header .simple_middle {
+  width: 100%;
+  height: 120px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--cor_cinza2);
+  border-left: 4px solid;
+  border-right: 4px solid;
+  border-bottom: 4px solid;
+}
+.main_container_main header .simple_middle .logo_titulo_header {
+  display: flex;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  width: 25%;
+}
+.main_container_main header .simple_middle .logo_titulo_header img {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 120px;
+  margin: -15px 10px 0px 0px;
+}
+.main_container_main header .simple_middle .logo_titulo_header h1 {
+  font-family: "Aladin";
+  color: white;
+  margin: 0px 0px 0px -20px;
+  font-size: 2em;
+  font-weight: 100;
+}
+.main_container_main .login_info_form {
+  height: calc(100% - 120px);
+  padding: 60px 0px 0px 0px;
+  display: flex;
+  align-items: center;
+}
+.main_container_main .login_info_form .sou_cliente {
+  width: 340px;
+  height: 290px;
+  padding: 20px;
+  background-color: var(--cor_cinza1);
+  margin: 0px 10px auto auto;
+  font-family: "ABeeZee", sans-serif;
+  box-shadow: -15px -15px 0px 0px var(--roxo-sombra);
+  border: 1.2px solid;
+}
+.main_container_main .login_info_form .sou_cliente h3 {
+  font-family: "Bebas neue", sans-serif;
+  font-size: 4.5em;
+  font-weight: 100;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 0px 10px;
+}
+.main_container_main .login_info_form .sou_cliente h3 span {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.3em;
+  margin: -23px 0px 0px 36px;
+}
+.main_container_main .login_info_form .sou_cliente p {
+  height: 74%;
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+}
+.main_container_main .login_info_form .login_metodohoods {
+  margin: -30px auto 0px 10px;
+  height: 100%;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente {
+  width: 500px;
+  height: 330px;
+  border: 1.2px solid;
+  background-color: var(--cor_cinza1);
+  box-shadow: 15px 15px 0px 0px var(--roxo-sombra);
+  padding: 20px 30px 0px 30px;
+  font-family: "ABeeZee", sans-serif;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente label {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente label input {
+  height: 47px;
+  border: 3px solid;
+  margin: 2px 0px;
+  padding: 10px;
+  font-size: 1em;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente label svg {
+  position: absolute;
+  right: 10px;
+  bottom: 8.5px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente label:nth-child(2) {
+  margin-top: 30px;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente a {
+  color: black;
+  font-size: 0.7em;
+  margin-top: 5px;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente a:visited {
+  color: black;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente span {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente span button {
+  cursor: pointer;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente span button:nth-child(1) {
+  margin: auto auto auto 0px;
+  width: 170px;
+  height: 60px;
+  border: 3.3px solid black;
+  background-color: #6A00FF;
+  color: white;
+  font-size: 1.5em;
+  font-family: "Bebas Neue", sans-serif;
+  transition: 0.2s;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente span button:nth-child(1):hover {
+  background-color: #8024ff;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente span a {
+  margin: auto;
+  width: 170px;
+  height: 60px;
+  font-family: "Bebas Neue", sans-serif;
+  color: #0094FF;
+  font-size: 1.5em;
+  border: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente span a:hover {
+  text-decoration: underline;
+}
+.main_container_main .login_info_form .login_metodohoods .login_cliente span a:visited {
+  color: #0094FF;
+}
+.main_container_main .login_info_form .login_metodohoods .external_metodos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main_container_main .login_info_form .login_metodohoods .external_metodos span {
+  width: 90%;
+  margin: 20px auto 10px auto;
+  text-align: center;
+  border-bottom: 2px solid;
+}
+.main_container_main .login_info_form .login_metodohoods .login_facebook, .main_container_main .login_info_form .login_metodohoods .login_google {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2em;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor_cinza1);
+  margin: 3px 0px;
+  padding: 10px 20px;
+}
+.main_container_main .login_info_form .login_metodohoods .login_facebook svg, .main_container_main .login_info_form .login_metodohoods .login_google svg {
+  margin: 0px 7px 0px 3px;
+  width: 40px;
+  height: 40px;
+}
+.main_container_main .login_info_form .login_metodohoods .login_facebook:hover, .main_container_main .login_info_form .login_metodohoods .login_google:hover {
+  background-color: #afafaf;
+}
+.main_container_main .login_info_form .login_metodohoods .login_facebook svg {
+  color: blue;
+}
+.main_container_main .login_info_form .login_metodohoods .login_google svg {
+  color: red;
+  width: 35px;
+  height: 35px;
+}
+.main_container_main .racoon_planet {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+}
+.main_container_main .racoon_planet svg {
+  width: 100%;
+  height: 100%;
+  color: #2ea022;
+  position: absolute;
+  z-index: 2;
+  border-radius: 50%;
+}
+.main_container_main .racoon_planet div {
+  width: 85%;
+  height: 85%;
+  margin: auto;
+  box-shadow: 0px 0px 0px 7px black;
+  left: 7.5%;
+  background-color: aqua;
+  position: absolute;
+  border-radius: 50%;
+}
+.main_container_main .racoon_planet img:nth-child(3) {
+  position: absolute;
+  z-index: 3;
+  top: -20%;
+  width: 160%;
+  height: 160%;
+}/*# sourceMappingURL=login-usu.module.css.map */

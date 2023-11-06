@@ -11,124 +11,7 @@
         height: fit-content;
         background-color: var(--background-cinza1);
         font-family: 'Bebas Neue', sans-serif;
-        .top_infos_header 
-        {
-                width: 100%;
-                height: 25px;
-                background-color: var(--cor_cinza1);
-                display: flex;
-                box-shadow: 0px 0px 10px black;
-                position: absolute;
         
-                h2 {
-                    font-size: 1.5em;
-                }
-        
-                .date_weather_header {
-                    width: 10%;
-                    background-color: var(--cor_cinza1);
-                    display: flex;
-                    align-items: center;
-                    padding: 0px 3px 0px 3px;
-        
-                    svg {
-                        width: 22px;
-                        margin: 2px 7px 0px 7px;
-                    }
-                }
-        
-                .social_media_header {
-                    width: 8%;
-                    background-color: var(--cor_cinza1);
-                    display: flex;
-                    align-items: center;
-                    padding: 0px 3px 0px 3px;
-        
-                    a {
-                        // background-color: green;
-                        display: flex;
-                        align-items: center;
-                        padding: 0px 0px 0px 0px;
-                    }
-        
-                    svg {
-                        // margin: auto;
-                        width: 1.5em;
-                    }
-        
-                    a:nth-child(2) {
-                        margin: 0px 0px 0px 0px;
-        
-                        svg {
-                            // margin-top: px;
-                            margin: 1px 0px 0px 0px;
-                            width: 1.85em;
-                        }
-                    }
-                }
-        
-                .idioma_header {
-                    width: 13%;
-                    height: 100%;
-                    background-color: #d9d9d9;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-left: 3px solid;
-                    border-right: 3px solid;
-                    padding: 0px 0px 0px 0px;
-                    position: absolute;
-                    right: 0px;
-                    z-index: 2;
-        
-                    .idiom_selected_header {
-                        background-color: #d9d9d9;
-                        height: 100%;
-                        display: flex;
-                        align-items: center;
-                        width: 100%;
-                        padding: 0px 3px;
-        
-                        h2 {
-                            width: 100%;
-                            text-align: center;
-                            cursor: default;
-                        }
-        
-                        span {
-                            display: flex;
-                            align-items: end;
-                            padding-top: 0px 0px 0px 0px;
-                            cursor: pointer;
-                        }
-                    }
-        
-                    .idioma_select_header {
-                        position: absolute;
-                        z-index: -1;
-                        top: 100%;
-                        background-color: #d9d9d9;
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        padding: 2px 3px 0px 3px;
-                        align-items: center;
-                        cursor: pointer;
-                        // border-left: 3px solid;
-                        // border-right: 3px solid;
-                        // border-bottom: 3px solid;
-                        border: 3px solid;
-                        transition: 0.35s;
-        
-                        h2 {}
-                    }
-        
-                    .idioma_select_header:hover {
-                        background-color: #bebcbc;
-                    }
-                }
-        
-        }
         .simple_middle
         {
             width: 100%;
@@ -288,19 +171,27 @@
                         background-color: #8024ff;
                     }
         
-                    button:nth-child(2) {
+                    a {
                         margin: auto;
                         width: 170px;
                         height: 60px;
-                        background-color: transparent;
+                        // background-color: green;
                         font-family: 'Bebas Neue', sans-serif;
                         color: #0094FF;
                         font-size: 1.5em;
                         border: none;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
         
-                    button:nth-child(2):hover {
+                    a:hover {
                         text-decoration: underline;
+                    }
+                    a:visited
+                    {
+                        color:#0094FF;
                     }
                 }
             }
