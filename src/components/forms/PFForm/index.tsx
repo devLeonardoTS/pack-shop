@@ -1,3 +1,5 @@
+import { EEstado } from "@/components/enums/EEstado";
+import { EPhoneType } from "@/components/enums/EPhoneType";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import style from "./index.module.scss";
@@ -7,30 +9,26 @@ const PFForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      razaoSocial: "",
-      nomeFantasia: "",
-      cnpj: "",
-      dataAbertura: "",
-      inscricaoEstadual: "",
-      inscricaoMunicipal: "",
-      businessType: "",
-      pais: "",
-      cep: "",
-      estado: "",
-      cidade: "",
-      bairro: "",
-      logradouro: "",
-      numero: "",
-      complemento: "",
-      ownerName: "",
-      phoneNumber: "",
-      phoneType: "",
-      isUsageTermsAccepted: "",
-      isPoliciesAccepted: "",
-      isSubscribedToOffers: "",
-      email: "",
-      password: "",
-      passwordConfirm: "",
+      fullName: undefined,
+      socialName: undefined,
+      cpf: undefined,
+      birthDate: undefined,
+      pais: undefined,
+      cep: undefined,
+      estado: undefined,
+      cidade: undefined,
+      bairro: undefined,
+      logradouro: undefined,
+      numero: undefined,
+      complemento: undefined,
+      phoneNumber: undefined,
+      phoneType: undefined,
+      isUsageTermsAccepted: undefined,
+      isPoliciesAccepted: undefined,
+      isSubscribedToOffers: undefined,
+      email: undefined,
+      password: undefined,
+      passwordConfirm: undefined,
     },
     onSubmit: (values) => console.log(values),
   });
@@ -40,86 +38,55 @@ const PFForm = () => {
       <div className={style.title}>
         <h2>{`CRIAÇÃO DE CONTA - (*) CAMPOS OBRIGATÓRIOS`}</h2>
       </div>
-      <form onSubmit={formik.handleSubmit} className={style.form}>
+      <form
+        id="sign-in-form"
+        onSubmit={formik.handleSubmit}
+        className={style.form}
+      >
         <div className={style.content}>
           <fieldset>
-            <legend>Dados do Negócio</legend>
+            <legend>Seu Perfil</legend>
             <div className={style["input-group"]}>
-              <label htmlFor="razaoSocial">Razão Social *</label>
+              <label htmlFor="fullName">Nome Completo *</label>
               <input
                 type="text"
-                id="razaoSocial"
-                name="razaoSocial"
+                id="fullName"
+                name="fullName"
                 onChange={formik.handleChange}
-                value={formik.values.razaoSocial}
+                value={formik.values.fullName}
               />
             </div>
 
             <div className={style["input-group"]}>
-              <label htmlFor="nomeFantasia">Nome Fantasia *</label>
+              <label htmlFor="socialName">Apelido *</label>
               <input
                 type="text"
-                id="nomeFantasia"
-                name="nomeFantasia"
+                id="socialName"
+                name="socialName"
                 onChange={formik.handleChange}
-                value={formik.values.nomeFantasia}
+                value={formik.values.socialName}
               />
             </div>
 
             <div className={style["input-group"]}>
-              <label htmlFor="cnpj">CNPJ *</label>
+              <label htmlFor="cpf">CPF *</label>
               <input
                 type="text"
-                id="cnpj"
-                name="cnpj"
+                id="cpf"
+                name="cpf"
                 onChange={formik.handleChange}
-                value={formik.values.cnpj}
+                value={formik.values.cpf}
               />
             </div>
 
             <div className={style["input-group"]}>
-              <label htmlFor="dataAbertura">
-                Data de abertura da empresa *
-              </label>
+              <label htmlFor="birthDate">Data de nascimento *</label>
               <input
-                type="text"
-                id="dataAbertura"
-                name="dataAbertura"
+                type="date"
+                id="birthDate"
+                name="birthDate"
                 onChange={formik.handleChange}
-                value={formik.values.dataAbertura}
-              />
-            </div>
-
-            <div className={style["input-group"]}>
-              <label htmlFor="inscricaoEstadual">Inscrição Estadual *</label>
-              <input
-                type="text"
-                id="inscricaoEstadual"
-                name="inscricaoEstadual"
-                onChange={formik.handleChange}
-                value={formik.values.inscricaoEstadual}
-              />
-            </div>
-
-            <div className={style["input-group"]}>
-              <label htmlFor="inscricaoMunicipal">Inscrição Municipal *</label>
-              <input
-                type="text"
-                id="inscricaoMunicipal"
-                name="inscricaoMunicipal"
-                onChange={formik.handleChange}
-                value={formik.values.inscricaoMunicipal}
-              />
-            </div>
-
-            <div className={style["input-group"]}>
-              <label htmlFor="businessType">Tipo de Negócio *</label>
-              <input
-                type="text"
-                id="businessType"
-                name="businessType"
-                onChange={formik.handleChange}
-                value={formik.values.businessType}
+                value={formik.values.birthDate}
               />
             </div>
           </fieldset>
@@ -150,13 +117,19 @@ const PFForm = () => {
 
             <div className={style["input-group"]}>
               <label htmlFor="estado">UF *</label>
-              <input
-                type="text"
-                id="estado"
+              <select
                 name="estado"
+                id="estado"
+                form="sign-in-form"
                 onChange={formik.handleChange}
-                value={formik.values.estado}
-              />
+              >
+                <option value="">Selecione um estado</option>
+                {Object.entries(EEstado).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className={style["input-group"]}>
@@ -204,7 +177,7 @@ const PFForm = () => {
             </div>
 
             <div className={style["input-group"]}>
-              <label htmlFor="complemento">Complemento *</label>
+              <label htmlFor="complemento">Complemento</label>
               <input
                 type="text"
                 id="complemento"
@@ -216,17 +189,7 @@ const PFForm = () => {
           </fieldset>
 
           <fieldset>
-            <legend>Administração</legend>
-            <div className={style["input-group"]}>
-              <label htmlFor="ownerName">Nome do Responsável *</label>
-              <input
-                type="text"
-                id="ownerName"
-                name="ownerName"
-                onChange={formik.handleChange}
-                value={formik.values.ownerName}
-              />
-            </div>
+            <legend>Contato</legend>
 
             <div className={style["input-group"]}>
               <label htmlFor="phoneNumber">Telefone de Contato *</label>
@@ -241,13 +204,19 @@ const PFForm = () => {
 
             <div className={style["input-group"]}>
               <label htmlFor="phoneType">Tipo de Telefone *</label>
-              <input
-                type="text"
-                id="phoneType"
+              <select
                 name="phoneType"
+                id="phoneType"
+                form="sign-in-form"
                 onChange={formik.handleChange}
-                value={formik.values.phoneType}
-              />
+              >
+                <option value="">Selecione um tipo</option>
+                {Object.entries(EPhoneType).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select>
             </div>
           </fieldset>
 
@@ -256,7 +225,7 @@ const PFForm = () => {
             <div className={style["input-group"]}>
               <label htmlFor="email">E-mail *</label>
               <input
-                type="text"
+                type="email"
                 id="email"
                 name="email"
                 onChange={formik.handleChange}
@@ -267,7 +236,7 @@ const PFForm = () => {
             <div className={style["input-group"]}>
               <label htmlFor="password">Senha *</label>
               <input
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 onChange={formik.handleChange}
@@ -278,7 +247,7 @@ const PFForm = () => {
             <div className={style["input-group"]}>
               <label htmlFor="passwordConfirm">Confirme a Senha *</label>
               <input
-                type="text"
+                type="password"
                 id="passwordConfirm"
                 name="passwordConfirm"
                 onChange={formik.handleChange}
@@ -296,6 +265,7 @@ const PFForm = () => {
                 name="isUsageTermsAccepted"
                 onChange={formik.handleChange}
                 value={formik.values.isUsageTermsAccepted}
+                required
               />
               <label htmlFor="isUsageTermsAccepted">
                 Aceita nossos Termos de Uso?
@@ -308,6 +278,7 @@ const PFForm = () => {
                 name="isPoliciesAccepted"
                 onChange={formik.handleChange}
                 value={formik.values.isPoliciesAccepted}
+                required
               />
               <label htmlFor="isPoliciesAccepted">
                 Concorda com nossa Política de Privacidade?

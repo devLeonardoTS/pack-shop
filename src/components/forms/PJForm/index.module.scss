@@ -1,11 +1,26 @@
 .container {
-  min-width: 330px;
-}
-.content {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 12px;
+  gap: 24px;
+}
+
+.title {
+  h2 {
+    font-size: 16px;
+  }
+}
+
+.form .content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+  }
 }
 
 .input-group {
@@ -14,7 +29,8 @@
   text-align: left;
   gap: 4px;
 
-  input {
+  input,
+  select {
     padding: 4px;
   }
 }
@@ -29,4 +45,9 @@
     padding: 4px;
     font-weight: bold;
   }
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 6px;
 }
