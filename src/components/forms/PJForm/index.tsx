@@ -1,41 +1,74 @@
-import { EEstado } from "@/components/enums/EEstado";
-import { EPhoneType } from "@/components/enums/EPhoneType";
+import { EAccountOriginType } from "@/common/enums/EAccountOriginType";
+import { EAccountRoleType } from "@/common/enums/EAccountRoleType";
+import { EEstado } from "@/common/enums/EEstado";
+import { EPhoneType } from "@/common/enums/EPhoneType";
+import { useCreateFullPjAccount } from "@/hooks/useUserRegistrationData";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { EBusinessType } from "../../enums/EBusinessType";
+import { EBusinessType } from "../../../common/enums/EBusinessType";
 import style from "./index.module.scss";
 
 const PJForm = () => {
+  const { mutate: createPjAccount } = useCreateFullPjAccount();
+
   const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
-      razaoSocial: undefined,
-      nomeFantasia: undefined,
-      cnpj: undefined,
-      dataAbertura: undefined,
-      inscricaoEstadual: undefined,
-      inscricaoMunicipal: undefined,
-      businessType: undefined,
-      pais: undefined,
-      cep: undefined,
-      estado: undefined,
-      cidade: undefined,
-      bairro: undefined,
-      logradouro: undefined,
-      numero: undefined,
-      complemento: undefined,
-      ownerName: undefined,
-      phoneNumber: undefined,
-      phoneType: undefined,
-      isUsageTermsAccepted: undefined,
-      isPoliciesAccepted: undefined,
-      isSubscribedToOffers: undefined,
-      email: undefined,
-      password: undefined,
-      passwordConfirm: undefined,
+      razaoSocial: "",
+      nomeFantasia: "",
+      cnpj: "",
+      dataAbertura: "",
+      inscricaoEstadual: "",
+      inscricaoMunicipal: "",
+      businessType: "",
+      pais: "",
+      cep: "",
+      estado: "",
+      cidade: "",
+      bairro: "",
+      logradouro: "",
+      numero: "",
+      complemento: "",
+      ownerName: "",
+      ownerCpf: "",
+      phoneNumber: "",
+      phoneType: "",
+      isUsageTermsAccepted: "",
+      isPoliciesAccepted: "",
+      isSubscribedToOffers: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: async (values) => {
+      await createPjAccount({
+        originType: EAccountOriginType.LOCAL,
+        roleType: EAccountRoleType.USER,
+        email: values.email,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
+        isSubscribedToOffers: Boolean(values.isSubscribedToOffers),
+        pais: values.pais,
+        cep: values.cep,
+        estado: values.estado,
+        cidade: values.cidade,
+        bairro: values.bairro,
+        logradouro: values.logradouro,
+        numero: values.numero,
+        phone: values.phoneNumber,
+        phoneType: values.phoneType as EPhoneType,
+        cnpj: values.cnpj,
+        dataAbertura: new Date(values.dataAbertura),
+        inscricaoEstadual: values.inscricaoEstadual,
+        inscricaoMunicipal: values.inscricaoMunicipal,
+        nomeFantasia: values.nomeFantasia,
+        razaoSocial: values.razaoSocial,
+        businessType: values.businessType as EBusinessType,
+        cpf: values.ownerCpf,
+        fullName: values.ownerName,
+      });
+    },
   });
 
   return (
@@ -81,6 +114,7 @@ const PJForm = () => {
                 name="cnpj"
                 onChange={formik.handleChange}
                 value={formik.values.cnpj}
+                maxLength={18}
               />
             </div>
 
@@ -105,6 +139,7 @@ const PJForm = () => {
                 name="inscricaoEstadual"
                 onChange={formik.handleChange}
                 value={formik.values.inscricaoEstadual}
+                maxLength={14}
               />
             </div>
 
@@ -116,6 +151,7 @@ const PJForm = () => {
                 name="inscricaoMunicipal"
                 onChange={formik.handleChange}
                 value={formik.values.inscricaoMunicipal}
+                maxLength={15}
               />
             </div>
 
@@ -156,6 +192,7 @@ const PJForm = () => {
                 name="cep"
                 onChange={formik.handleChange}
                 value={formik.values.cep}
+                maxLength={8}
               />
             </div>
 
@@ -246,13 +283,26 @@ const PJForm = () => {
             </div>
 
             <div className={style["input-group"]}>
-              <label htmlFor="phoneNumber">Telefone de Contato *</label>
+              <label htmlFor="ownerCpf">CPF do Responsável *</label>
               <input
                 type="text"
+                id="ownerCpf"
+                name="ownerCpf"
+                onChange={formik.handleChange}
+                value={formik.values.ownerCpf}
+                maxLength={11}
+              />
+            </div>
+
+            <div className={style["input-group"]}>
+              <label htmlFor="phoneNumber">Telefone de Contato *</label>
+              <input
+                type="tel"
                 id="phoneNumber"
                 name="phoneNumber"
                 onChange={formik.handleChange}
                 value={formik.values.phoneNumber}
+                maxLength={15}
               />
             </div>
 
@@ -299,13 +349,13 @@ const PJForm = () => {
             </div>
 
             <div className={style["input-group"]}>
-              <label htmlFor="passwordConfirm">Confirme a Senha *</label>
+              <label htmlFor="confirmPassword">Confirme a Senha *</label>
               <input
                 type="password"
-                id="passwordConfirm"
-                name="passwordConfirm"
+                id="confirmPassword"
+                name="confirmPassword"
                 onChange={formik.handleChange}
-                value={formik.values.passwordConfirm}
+                value={formik.values.confirmPassword}
               />
             </div>
           </fieldset>

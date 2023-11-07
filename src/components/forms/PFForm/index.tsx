@@ -1,5 +1,5 @@
-import { EEstado } from "@/components/enums/EEstado";
-import { EPhoneType } from "@/components/enums/EPhoneType";
+import { EEstado } from "@/common/enums/EEstado";
+import { EPhoneType } from "@/common/enums/EPhoneType";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import style from "./index.module.scss";
