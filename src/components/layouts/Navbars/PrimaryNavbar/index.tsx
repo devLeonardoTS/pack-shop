@@ -1,7 +1,10 @@
+import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import Image from "next/image";
 import style from "./index.module.scss";
 
 const PrimaryNavbar = () => {
+  const { signOut, status } = useUserSessionStore();
+
   return (
     <nav className={`${style.navbar} dft-padding`}>
       <div className={style["left-area"]}>
@@ -17,11 +20,24 @@ const PrimaryNavbar = () => {
         </a>
       </div>
       <menu className={style["right-area"]}>
-        <li>
-          <a className={`link`} href="/login">
-            LOGIN
-          </a>
-        </li>
+        {status === "signed" ? (
+          <>
+            <li>
+              <p>
+                <b>Authenticated</b>
+              </p>
+            </li>
+            <li>
+              <button onClick={() => signOut()}>SIGN-OUT</button>
+            </li>
+          </>
+        ) : (
+          <li>
+            <a className={`link`} href="/login">
+              LOGIN
+            </a>
+          </li>
+        )}
       </menu>
     </nav>
   );

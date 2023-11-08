@@ -2,7 +2,7 @@ import { EAccountOriginType } from "@/common/enums/EAccountOriginType";
 import { EAccountRoleType } from "@/common/enums/EAccountRoleType";
 import { EEstado } from "@/common/enums/EEstado";
 import { EPhoneType } from "@/common/enums/EPhoneType";
-import { useCreateFullPjAccount } from "@/hooks/useUserRegistrationData";
+import { useCreateFullPjAccount } from "@/common/hooks/useUserRegistrationData";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { EBusinessType } from "../../../common/enums/EBusinessType";
@@ -92,6 +92,7 @@ const PJForm = () => {
                 name="razaoSocial"
                 onChange={formik.handleChange}
                 value={formik.values.razaoSocial}
+                required
               />
             </div>
 
@@ -103,6 +104,7 @@ const PJForm = () => {
                 name="nomeFantasia"
                 onChange={formik.handleChange}
                 value={formik.values.nomeFantasia}
+                required
               />
             </div>
 
@@ -115,6 +117,7 @@ const PJForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.cnpj}
                 maxLength={18}
+                required
               />
             </div>
 
@@ -128,6 +131,7 @@ const PJForm = () => {
                 name="dataAbertura"
                 onChange={formik.handleChange}
                 value={formik.values.dataAbertura}
+                required
               />
             </div>
 
@@ -140,6 +144,7 @@ const PJForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.inscricaoEstadual}
                 maxLength={14}
+                required
               />
             </div>
 
@@ -152,6 +157,7 @@ const PJForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.inscricaoMunicipal}
                 maxLength={15}
+                required
               />
             </div>
 
@@ -162,6 +168,7 @@ const PJForm = () => {
                 id="businessType"
                 form="sign-in-form"
                 onChange={formik.handleChange}
+                required
               >
                 <option value="">Selecione uma opção</option>
                 <option value={EBusinessType.SELLER}>Varejo</option>
@@ -181,6 +188,7 @@ const PJForm = () => {
                 name="pais"
                 onChange={formik.handleChange}
                 value={formik.values.pais}
+                required
               />
             </div>
 
@@ -193,6 +201,7 @@ const PJForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.cep}
                 maxLength={8}
+                required
               />
             </div>
 
@@ -203,6 +212,7 @@ const PJForm = () => {
                 id="estado"
                 form="sign-in-form"
                 onChange={formik.handleChange}
+                required
               >
                 <option value="">Selecione um estado</option>
                 {Object.entries(EEstado).map(([key, value]) => (
@@ -221,6 +231,7 @@ const PJForm = () => {
                 name="cidade"
                 onChange={formik.handleChange}
                 value={formik.values.cidade}
+                required
               />
             </div>
 
@@ -232,6 +243,7 @@ const PJForm = () => {
                 name="bairro"
                 onChange={formik.handleChange}
                 value={formik.values.bairro}
+                required
               />
             </div>
 
@@ -243,6 +255,7 @@ const PJForm = () => {
                 name="logradouro"
                 onChange={formik.handleChange}
                 value={formik.values.logradouro}
+                required
               />
             </div>
 
@@ -254,6 +267,7 @@ const PJForm = () => {
                 name="numero"
                 onChange={formik.handleChange}
                 value={formik.values.numero}
+                required
               />
             </div>
 
@@ -279,6 +293,7 @@ const PJForm = () => {
                 name="ownerName"
                 onChange={formik.handleChange}
                 value={formik.values.ownerName}
+                required
               />
             </div>
 
@@ -291,6 +306,7 @@ const PJForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.ownerCpf}
                 maxLength={11}
+                required
               />
             </div>
 
@@ -303,6 +319,7 @@ const PJForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.phoneNumber}
                 maxLength={15}
+                required
               />
             </div>
 
@@ -313,6 +330,7 @@ const PJForm = () => {
                 id="phoneType"
                 form="sign-in-form"
                 onChange={formik.handleChange}
+                required
               >
                 <option value="">Selecione um tipo</option>
                 {Object.entries(EPhoneType).map(([key, value]) => (
@@ -334,6 +352,7 @@ const PJForm = () => {
                 name="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
+                required
               />
             </div>
 
@@ -345,6 +364,7 @@ const PJForm = () => {
                 name="password"
                 onChange={formik.handleChange}
                 value={formik.values.password}
+                required
               />
             </div>
 
@@ -356,6 +376,7 @@ const PJForm = () => {
                 name="confirmPassword"
                 onChange={formik.handleChange}
                 value={formik.values.confirmPassword}
+                required
               />
             </div>
           </fieldset>

@@ -58,33 +58,6 @@ export interface CreatePhoneRequest {
   profileId?: number;
 }
 
-const createAccount = (data: Partial<CreateUserAccountRequest>) => {
-  return AppAxios.client.post("v1/user-account", data);
-};
-
-const createProfile = (data: Partial<CreateProfileRequest>) => {
-  return AppAxios.client.post(
-    `v1/user-account/${data.userAccountId}/profile`,
-    data,
-  );
-};
-
-const createBusiness = (data: Partial<CreateBusinessRequest>) => {
-  return AppAxios.client.post(`v1/profile/${data.profileId}/business`, data);
-};
-
-const createBusinessOwner = (data: Partial<CreateBusinessOwnerRequest>) => {
-  return AppAxios.client.post(`v1/business/${data.businessId}/owner`, data);
-};
-
-const createAddress = (data: Partial<CreateAddressRequest>) => {
-  return AppAxios.client.post(`v1/profile/${data.profileId}/address`, data);
-};
-
-const createPhone = (data: Partial<CreatePhoneRequest>) => {
-  return AppAxios.client.post(`v1/profile/${data.profileId}/phone`, data);
-};
-
 const createFullPjAccount = async (
   data: Partial<
     CreateUserAccountRequest &
@@ -96,30 +69,6 @@ const createFullPjAccount = async (
   >,
 ) => {
   return AppAxios.client.post(`v1/user-account/pj`, data);
-};
-
-export const useCreateAccount = () => {
-  return useMutation(createAccount);
-};
-
-export const useCreateProfile = () => {
-  return useMutation(createProfile);
-};
-
-export const useCreateBusiness = () => {
-  return useMutation(createBusiness);
-};
-
-export const useCreateBusinessOwner = () => {
-  return useMutation(createBusinessOwner);
-};
-
-export const useCreateAddress = () => {
-  return useMutation(createAddress);
-};
-
-export const useCreatePhone = () => {
-  return useMutation(createPhone);
 };
 
 export const useCreateFullPjAccount = () => {

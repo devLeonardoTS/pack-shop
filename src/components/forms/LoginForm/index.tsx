@@ -1,13 +1,43 @@
+import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import { useFormik } from "formik";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import style from "./index.module.scss";
 
 const LoginForm = () => {
+  const MySwal = withReactContent(Swal);
+
+  const { signIn, status, error } = useUserSessionStore();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      console.log(values);
+      signIn(
+        { email: values.email, password: values.password },
+        {
+          onSuccess: () => {
+            MySwal.fire({
+              title: <p>Usuário autenticado</p>,
+              toast: true,
+              timerProgressBar: true,
+              timer: 2000,
+              position: "bottom-right",
+              icon: "success",
+            });
+          },
+          onFailure: () => {
+            MySwal.fire({
+              icon: "error",
+              title: <p>Credenciais inválidas</p>,
+            });
+          },
+        },
+      );
+    },
   });
 
   return (
@@ -22,6 +52,7 @@ const LoginForm = () => {
             name="email"
             onChange={formik.handleChange}
             value={formik.values.email}
+            // required
           />
         </div>
 
@@ -33,6 +64,7 @@ const LoginForm = () => {
             name="password"
             onChange={formik.handleChange}
             value={formik.values.password}
+            // required
           />
         </div>
 
