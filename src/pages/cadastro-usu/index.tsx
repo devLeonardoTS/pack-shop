@@ -41,7 +41,7 @@ export default function Cadastro_usu() {
             type="radio"
             name="pfpj"
             id="pf"
-            checked = {pessoafisica}
+            checked={pessoafisica}
             onClick={() => {
               settipopessoa(false);
             }}
@@ -57,6 +57,7 @@ export default function Cadastro_usu() {
           />
           (PJ) Pessoa jurídica
         </div>
+
         <form
           action=""
           method="post"
@@ -65,13 +66,42 @@ export default function Cadastro_usu() {
         >
           <h2>CRIAÇÃO DE CONTA - (*) CAMPOS OBRIGATÓRIOS</h2>
         </form>
+
         <form
           action=""
           method="post"
           className={styles.pessoa_juridica_register}
           style={frompj}
         >
-          <h2>CRIAÇÃO DE CONTA - (*) CAMPOS OBRIGATÓRIOS2</h2>
+          <h2>CRIAÇÃO DE CONTA - (*) CAMPOS OBRIGATÓRIOS</h2>
+          <input type="text" placeholder="Razão Social" />
+          <input type="text" placeholder="Nome Fantasia" />
+          <input type="text" placeholder="CNPJ" />
+          <input type="text" placeholder="Data de Abertura" />
+          <input type="text" placeholder="Inscrição Estadual" />
+          <input type="text" placeholder="Inscrição municipal" />
+          <input type="text" placeholder="Tipo de negócio" />
+          {/* Localidade */}
+          <input type="text" placeholder="País" />
+          <input type="text" placeholder="CEP" />
+          <input type="text" placeholder="Estado" />
+          <input type="text" placeholder="Cidade" />
+          <input type="text" placeholder="Bairro" />
+          <input type="text" placeholder="Logradouro" />
+          <input type="text" placeholder="Número" />
+          <input type="text" placeholder="Complemento" />
+          {/* Infos dono do negócio */}
+          <input type="text" placeholder="Nome do Proprietário" />
+          <input type="text" placeholder="CPF" />
+          <input type="text" placeholder="Telefone" />
+          {/* Termos */}
+          <input type="text" placeholder="isUsageTermsAccepted" />
+          <input type="text" placeholder="isPoliciesAccepted" />
+          <input type="text" placeholder="isSubscribedToOffers" />
+          {/* acesso conta */}
+          <input type="text" placeholder="Email" />
+          <input type="text" placeholder="Senha" />
+          <input type="text" placeholder="Confirmar Senha" />
         </form>
       </div>
     </main>
