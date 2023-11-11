@@ -13,4 +13,91 @@
   width: 25vw;
 
   max-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  .image-area {
+    display: flex;
+    justify-content: center;
+
+    .image-box {
+      box-shadow: -3px -3px 1px 1px black;
+
+      border: 1px solid black;
+      border-radius: 3%;
+
+      overflow: hidden;
+
+      display: flex;
+      justify-content: center;
+
+      img {
+        border-radius: 3%;
+      }
+    }
+  }
+
+  .text-group {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    .title {
+      font-weight: bold;
+    }
+    .store {
+      font-weight: lighter;
+    }
+  }
+
+  .horizontal-menu {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 12px;
+
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+      margin: 12px;
+    }
+  }
+}
+
+.main-menu {
+  flex: 1;
+
+  overflow: auto;
+
+  button {
+    width: 100%;
+    padding: 12px;
+    text-transform: uppercase;
+  }
+  button:hover {
+    font-weight: bold;
+  }
+}
+
+.secondary-menu {
+  gap: 12px;
+
+  padding: 12px;
+
+  button {
+    width: 100%;
+    padding: 12px;
+    text-transform: uppercase;
+  }
+  button:hover {
+    font-weight: bold;
+  }
 }

@@ -62,3 +62,24 @@ button:hover,
   color: orange;
   text-decoration: underline;
 }
+
+.rounded {
+  border-radius: 50%;
+}
+
+.rounded-sm {
+  border-radius: 5px;
+}
+
+.ripple-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background-color: transparent;
+}
+
+.ripple-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
