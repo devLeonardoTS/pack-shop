@@ -1,19 +1,28 @@
+import { useUserSessionStore } from "@/common/stores/UserSessionStore";
+import { HydrationZustand } from "@/components/common/HydrationZustand";
 import PFForm from "@/components/forms/PFForm";
 import PJForm from "@/components/forms/PJForm";
-import PrimaryLayout from "@/components/layouts/PrimaryLayout";
+import LayoutPrimary from "@/components/layouts/LayoutPrimary";
 import { NextPageWithLayout } from "@/pages/_app";
 import Head from "next/head";
-import { Dispatch, ReactElement, SetStateAction, useState } from "react";
+import { useRouter } from "next/router";
+import {
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import style from "./index.module.scss";
 
 type UserRegistrationFormType = "PF" | "PJ";
 
-type CadastroFormSelectorType = {
+type FormSelectorType = {
   formType: UserRegistrationFormType;
   setFormType: Dispatch<SetStateAction<UserRegistrationFormType>>;
 };
 
-const useCadastroFormSelectorHook = () => {
+const useFormSelectorHook = () => {
   const [formType, setFormType] = useState<UserRegistrationFormType>("PF");
 
   return {
@@ -22,10 +31,7 @@ const useCadastroFormSelectorHook = () => {
   };
 };
 
-const CadastroFormSelector = ({
-  formType,
-  setFormType,
-}: CadastroFormSelectorType) => {
+const CadastroFormSelector = ({ formType, setFormType }: FormSelectorType) => {
   return (
     <div className={style["registration-type"]}>
       <div className={style.title}>
@@ -58,7 +64,20 @@ const CadastroFormSelector = ({
 };
 
 const UserRegistrationPage: NextPageWithLayout = () => {
-  const { formType, setFormType } = useCadastroFormSelectorHook();
+  const { formType, setFormType } = useFormSelectorHook();
+
+  const { push } = useRouter();
+  const { user } = useUserSessionStore();
+
+  useEffect(() => {
+    if (user) {
+      push("/");
+    }
+  }, [user]);
+
+  if (user) {
+    return null;
+  }
 
   return (
     <main className={style.container}>
@@ -77,7 +96,11 @@ const UserRegistrationPage: NextPageWithLayout = () => {
 };
 
 UserRegistrationPage.getLayout = function getLayout(page: ReactElement) {
-  return <PrimaryLayout>{page}</PrimaryLayout>;
+  return (
+    <LayoutPrimary>
+      <HydrationZustand>{page}</HydrationZustand>
+    </LayoutPrimary>
+  );
 };
 
 export default UserRegistrationPage;

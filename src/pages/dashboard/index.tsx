@@ -1,7 +1,7 @@
+import { useBusinessDashboardStore } from "@/common/stores/BusinessDashboardStore";
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import { HydrationZustand } from "@/components/common/HydrationZustand";
-import LoginForm from "@/components/forms/LoginForm";
-import LayoutPrimary from "@/components/layouts/LayoutPrimary";
+import LayoutDashboard from "@/components/layouts/LayoutDashboard";
 import { NextPageWithLayout } from "@/pages/_app";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -12,18 +12,18 @@ const LoginPage: NextPageWithLayout = () => {
   const { push } = useRouter();
   const { user } = useUserSessionStore();
 
+  const { content } = useBusinessDashboardStore();
+
   useEffect(() => {
-    if (user) {
+    if (!user) {
       push("/");
     }
   }, [user]);
 
-  // If user is authenticated, don't show login form.
-  if (user) {
+  if (!user) {
     return null;
   }
 
-  // If not authenticated, show login form.
   return (
     <>
       <Head>
@@ -32,20 +32,24 @@ const LoginPage: NextPageWithLayout = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={style.container}>
-        <div className={style.content}>
-          <LoginForm />
-        </div>
-      </main>
+      {content ? (
+        content
+      ) : (
+        <main className={style.container}>
+          <div className={style.content}>
+            <h1>User's Dashboard</h1>
+          </div>
+        </main>
+      )}
     </>
   );
 };
 
 LoginPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <LayoutPrimary>
+    <LayoutDashboard>
       <HydrationZustand>{page}</HydrationZustand>
-    </LayoutPrimary>
+    </LayoutDashboard>
   );
 };
 

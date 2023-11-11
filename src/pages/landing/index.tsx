@@ -1,5 +1,5 @@
 import Footer from "@/components/layouts/Footer";
-import LPNavbar from "@/components/layouts/Navbars/LPNavbar";
+import NavbarLandingPage from "@/components/layouts/Navbars/NavbarLandingPage";
 import Head from "next/head";
 import { ReactElement } from "react";
 import { NextPageWithLayout } from "../_app";
@@ -9,10 +9,10 @@ export type LandingPageLayoutProps = {
   children?: React.ReactNode;
 };
 
-function LandingPageLayout({ children }: LandingPageLayoutProps) {
+function LayoutLandingPage({ children }: LandingPageLayoutProps) {
   return (
     <>
-      <LPNavbar />
+      <NavbarLandingPage />
       {children}
       <Footer />
     </>
@@ -41,7 +41,7 @@ const LandingPage: NextPageWithLayout = () => {
 };
 
 LandingPage.getLayout = function getLayout(page: ReactElement) {
-  return <LandingPageLayout>{page}</LandingPageLayout>;
+  return <LayoutLandingPage>{page}</LayoutLandingPage>;
 };
 
 export default LandingPage;

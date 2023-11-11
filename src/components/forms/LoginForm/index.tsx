@@ -19,7 +19,7 @@ const LoginForm = () => {
       signIn(
         { email: values.email, password: values.password },
         {
-          onSuccess: () => {
+          onSuccess: async () => {
             MySwal.fire({
               title: <p>Usuário autenticado</p>,
               toast: true,
@@ -29,7 +29,7 @@ const LoginForm = () => {
               icon: "success",
             });
           },
-          onFailure: () => {
+          onFailure: async () => {
             MySwal.fire({
               icon: "error",
               title: <p>Credenciais inválidas</p>,

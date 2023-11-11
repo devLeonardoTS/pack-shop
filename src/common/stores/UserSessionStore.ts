@@ -1,7 +1,11 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { EAccountOriginType } from "../enums/EAccountOriginType";
+import { EAccountRoleType } from "../enums/EAccountRoleType";
+import { EStoreKeys } from "../enums/EStoreKeys";
+import { IActionCallbackOptions } from "../interfaces/IActionCallbackOptions";
+import { IUserAuthResponse } from "../responses/IUserAuthResponse";
 import { AppAxios } from "../utilities/AppAxios";
-import { EStoreKeys } from "./EStoreKeys";
 
 export interface LocalUserCredential {
   email: string;
@@ -13,25 +17,22 @@ interface AuthenticatedUser {
   profileId: number;
   businessId: number;
   consumerId: number;
+  role: EAccountRoleType;
+  origin: EAccountOriginType;
 }
 
-type StoreStatus = "unsigned" | "loading" | "signed";
-
-interface ActionCallbackOptions {
-  onSuccess?: () => Promise<void> | void;
-  onFailure?: () => Promise<void> | void;
-}
+type StoreStatus = "idle" | "loading";
 
 interface SessionContext {
   status: StoreStatus;
   error?: string;
   token?: string;
-  userId?: number;
+  user?: Partial<AuthenticatedUser>;
   signIn(
     credential: LocalUserCredential,
-    options?: ActionCallbackOptions,
+    options?: IActionCallbackOptions,
   ): Promise<void>;
-  signOut(options?: ActionCallbackOptions): void;
+  signOut(options?: IActionCallbackOptions): void;
 }
 
 export const useUserSessionStore = create<SessionContext>()(
@@ -40,14 +41,16 @@ export const useUserSessionStore = create<SessionContext>()(
     (set, get) => {
       const signIn = async (
         credential: LocalUserCredential,
-        options?: ActionCallbackOptions,
+        options?: IActionCallbackOptions,
       ) => {
         set({ status: "loading" });
 
         const controller = new AbortController();
         const ep = "v1/auth/local";
         const result = await AppAxios.client
-          .post(ep, credential, { signal: controller.signal })
+          .post<IUserAuthResponse>(ep, credential, {
+            signal: controller.signal,
+          })
           .then((result) => {
             options?.onSuccess?.();
             return result;
@@ -77,29 +80,36 @@ export const useUserSessionStore = create<SessionContext>()(
         set({
           token: data.accessToken,
           error: "",
-          status: "signed",
-          userId: data.user.id,
+          status: "idle",
+          user: {
+            accountId: data.user?.id,
+            profileId: data.user?.profile?.id,
+            businessId: data.user?.profile?.business?.id,
+            consumerId: data.user?.profile?.consumer?.id,
+            origin: data.user?.originType?.origin as EAccountOriginType,
+            role: data.user?.roleType?.role as EAccountRoleType,
+          },
         });
 
         AppAxios.setAuthHeader(data.accessToken);
       };
 
-      const signOut = (options?: ActionCallbackOptions) => {
+      const signOut = (options?: IActionCallbackOptions) => {
         set({
-          status: "unsigned",
+          status: "idle",
           error: "",
           token: "",
-          userId: undefined,
+          user: undefined,
         });
         AppAxios.setAuthHeader();
         options?.onSuccess?.();
       };
 
       return {
-        status: "unsigned",
+        status: "idle",
         error: "",
         token: "",
-        userId: undefined,
+        user: undefined,
         signIn,
         signOut,
       };

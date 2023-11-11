@@ -1,15 +1,25 @@
 import { EAccountOriginType } from "@/common/enums/EAccountOriginType";
 import { EAccountRoleType } from "@/common/enums/EAccountRoleType";
 import { EEstado } from "@/common/enums/EEstado";
+import { EHttpStatusCode } from "@/common/enums/EHttpStatusCode";
 import { EPhoneType } from "@/common/enums/EPhoneType";
 import { useCreateFullPjAccount } from "@/common/hooks/useUserRegistrationData";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { EBusinessType } from "../../../common/enums/EBusinessType";
 import style from "./index.module.scss";
 
 const PJForm = () => {
-  const { mutate: createPjAccount } = useCreateFullPjAccount();
+  const MySwal = withReactContent(Swal);
+
+  const {
+    mutate: createPjAccount,
+    isSuccess,
+    error,
+  } = useCreateFullPjAccount();
 
   const router = useRouter();
 
@@ -70,6 +80,42 @@ const PJForm = () => {
       });
     },
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      MySwal.fire({
+        title: <p>Cadastro realizado!</p>,
+        toast: true,
+        timerProgressBar: true,
+        timer: 2000,
+        position: "bottom-right",
+        icon: "success",
+      });
+    }
+
+    if (error) {
+      const reqError = error as any;
+
+      let message;
+      switch (reqError.statusCode) {
+        case EHttpStatusCode.BAD_REQUEST:
+          message =
+            "Alguns dos dados são inválidos, verifique e tente novamente.";
+          break;
+        default:
+          message = "Algo deu errado, tente novamente mais tarde";
+          break;
+      }
+
+      MySwal.fire({
+        title: <p>Ops...</p>,
+        text: message,
+        toast: true,
+        position: "bottom-right",
+        icon: "error",
+      });
+    }
+  }, [isSuccess, error]);
 
   return (
     <div className={style.container}>

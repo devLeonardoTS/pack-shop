@@ -1,5 +1,5 @@
+import { StyledEngineProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HydrationZustand } from "../HydrationZustand";
 
 export type InjectorProps = {
   children?: React.ReactNode;
@@ -11,7 +11,7 @@ function Injectors({ children }: InjectorProps) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <HydrationZustand>{children}</HydrationZustand>
+        <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
       </QueryClientProvider>
     </>
   );

@@ -17,6 +17,9 @@
     "cy:test": "start-server-and-test dev 3000 cy:run"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.17",
     "@tanstack/react-query": "^4.28.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",

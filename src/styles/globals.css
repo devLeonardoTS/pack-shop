@@ -17,13 +17,9 @@ body,
   overflow-x: hidden;
 }
 
-#__next {
-  padding: 0px 12px;
-}
-
-ul,
-ol,
-menu {
+ul li,
+ol li,
+menu li {
   list-style: none;
 }
 
@@ -33,9 +29,14 @@ a {
   text-decoration: inherit; /* no underline */
 }
 
+button:hover,
+.btn:hover {
+  cursor: pointer;
+}
+
 .link:hover {
   color: orange;
-  border-bottom: 1px solid orange;
+  text-decoration: underline;
 }
 
 .c-accent {
@@ -48,4 +49,16 @@ a {
 
 .txt-sm {
   font-size: 12px;
+}
+
+.btn-as-link {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+
+  cursor: pointer;
+}
+.btn-as-link:hover {
+  color: orange;
+  text-decoration: underline;
 }

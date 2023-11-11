@@ -1,7 +1,7 @@
 import Image from "next/image";
 import style from "./index.module.scss";
 
-const LPNavbar = () => {
+const NavbarLandingPage = () => {
   return (
     <nav className={`${style.navbar} dft-padding`}>
       <div className={style["left-area"]}>
@@ -27,4 +27,4 @@ const LPNavbar = () => {
   );
 };
 
-export default LPNavbar;
+export default NavbarLandingPage;

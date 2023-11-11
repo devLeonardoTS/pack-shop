@@ -1,4 +1,4 @@
-import PrimaryLayout from "@/components/layouts/PrimaryLayout";
+import LayoutPrimary from "@/components/layouts/LayoutPrimary";
 import Head from "next/head";
 import { ReactElement } from "react";
 import style from "./index.module.scss";
@@ -21,7 +21,7 @@ const MarketplaceHome: NextPageWithLayout = () => {
 };
 
 MarketplaceHome.getLayout = function getLayout(page: ReactElement) {
-  return <PrimaryLayout>{page}</PrimaryLayout>;
+  return <LayoutPrimary>{page}</LayoutPrimary>;
 };
 
 export default MarketplaceHome;
