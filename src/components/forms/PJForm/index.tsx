@@ -3,7 +3,7 @@ import { EAccountRoleType } from "@/common/enums/EAccountRoleType";
 import { EEstado } from "@/common/enums/EEstado";
 import { EHttpStatusCode } from "@/common/enums/EHttpStatusCode";
 import { EPhoneType } from "@/common/enums/EPhoneType";
-import { useCreateFullPjAccount } from "@/common/hooks/useUserRegistrationData";
+import { useCreateFullPjAccount } from "@/common/hooks/useAccountCreationData";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

@@ -7,7 +7,7 @@ const getImageTypes = () => {
 };
 
 export const useImageTypeData = (options?: IActionCallbackOptions) => {
-  useQuery("image-type" as any, getImageTypes, {
+  return useQuery("image-type" as any, getImageTypes, {
     onSuccess: options?.onSuccess,
     onError: options?.onFailure,
     select: (response) => {

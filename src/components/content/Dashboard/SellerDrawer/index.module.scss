@@ -1,0 +1,16 @@
+.container {
+  flex: 1;
+  overflow: auto;
+}
+
+.drawer {
+  @media only screen and (max-width: 425px) {
+    width: 100vw;
+  }
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    width: 50vw;
+  }
+  width: 25vw;
+
+  max-height: 100vh;
+}

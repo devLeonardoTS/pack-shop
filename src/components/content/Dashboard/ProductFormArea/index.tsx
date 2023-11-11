@@ -1,11 +1,11 @@
 import ProductForm from "@/components/forms/ProductForm";
 import style from "./index.module.scss";
 
-export type DashboardProductsProps = {
+export type ProductFormAreaProps = {
   children?: React.ReactNode;
 };
 
-function DashboardProducts({ children }: DashboardProductsProps) {
+function ProductFormArea({ children }: ProductFormAreaProps) {
   return (
     <main className={style.container}>
       <div className={style.content}>
@@ -15,4 +15,4 @@ function DashboardProducts({ children }: DashboardProductsProps) {
   );
 }
 
-export default DashboardProducts;
+export default ProductFormArea;

@@ -1,5 +1,5 @@
 import { EHttpStatusCode } from "@/common/enums/EHttpStatusCode";
-import { EProductImageType } from "@/common/enums/EProductImageType";
+import { EImageType } from "@/common/enums/EImageType";
 import { EProductType } from "@/common/enums/EProductType";
 import {
   useCreateProduct,
@@ -84,7 +84,7 @@ const ProductForm = () => {
         await createProductImage({
           file: file,
           productId: productResponse.data.id,
-          imageType: EProductImageType.PRODUCT_DISPLAY_1,
+          imageType: EImageType.PRODUCT_DISPLAY_1,
         });
       }
     },

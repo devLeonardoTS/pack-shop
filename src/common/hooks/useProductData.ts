@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { EProductImageType } from "../enums/EProductImageType";
+import { EImageType } from "../enums/EImageType";
 import { EProductType } from "../enums/EProductType";
 import { AppAxios } from "../utilities/AppAxios";
 
 export interface CreateProductImageRequest {
   file: File;
-  imageType: EProductImageType;
+  imageType: EImageType;
   productId: number;
   imageId?: number;
 }
