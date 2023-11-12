@@ -5,6 +5,7 @@ import { IPaginatedResponse } from "@/common/responses/IPaginatedResponse";
 import { IProductImageResponse } from "@/common/responses/IProductImageResponse";
 import { IProductResponse } from "@/common/responses/IProductResponse";
 import { AppAxios } from "@/common/utilities/AppAxios";
+import RippleButton from "@/components/common/RippleButton";
 import LayoutPrimary from "@/components/layouts/LayoutPrimary";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
@@ -117,7 +118,7 @@ const ProductPage = ({
       </Head>
       <main className={style.container}>
         <div className={style.content}>
-          <h1>Product's Page</h1>
+          {/* <h1>Product's Page</h1> */}
           <div className={style["image-box"]}>
             <img
               src={
@@ -137,29 +138,41 @@ const ProductPage = ({
               }
             />
           </div>
-          <p className={`txt-bold`}>{name}</p>
-          <p>{description}</p>
-          <p>
-            <span className={`txt-bold`}>SKU: </span>
-            {sku}
-          </p>
-          <p>
-            <span className={`txt-bold`}>Preço: </span>
-            {BRCurrency.format(Number(price))}
-          </p>
-          <p>
-            <span className={`txt-bold`}>Estoque: </span>
-            {stock}
-          </p>
-          <p>
-            <span className={`txt-bold`}>Marca: </span>
-            {brand}
-          </p>
+          <div className={style["product-txt-area"]}>
+            <div className={style["header-area"]}>
+              <h1 className={`${style["title"]}`}>{name}</h1>
+              <div className={style["details-area"]}>
+                <p className={style["txt-sku"]}>
+                  <span className={`txt-bold`}>SKU: </span>
+                  {sku}
+                </p>
+                <p className={style["txt-brand"]}>
+                  <span className={`txt-bold`}>Marca: </span>
+                  {brand}
+                </p>
 
-          <div>
-            <a className={`btn-as-link`} href={`/loja/${slug}`}>
-              Ir para Loja
-            </a>
+                <p className={style["txt-stock"]}>
+                  <span className={`txt-bold`}>Estoque: </span>
+                  {stock}
+                </p>
+              </div>
+            </div>
+
+            <p className={style["txt-price"]}>
+              {BRCurrency.format(Number(price))}
+            </p>
+            <div className={style["description-area"]}>
+              <p className={style["txt-description"]}>{description}</p>
+            </div>
+          </div>
+
+          <div className={style["action-area"]}>
+            <RippleButton className={style["btn-link"]}>
+              <a href={`/loja/${slug}`}>Ir para Loja</a>
+            </RippleButton>
+            <RippleButton className={`${style["cta-btn"]}`} onClick={() => {}}>
+              ADICIONAR AO CARRINHO
+            </RippleButton>
           </div>
         </div>
       </main>

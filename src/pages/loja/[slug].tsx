@@ -1,28 +1,23 @@
 import { Defaults } from "@/common/constants/Defaults";
 import { EImageType } from "@/common/enums/EImageType";
-import { useProductImageData } from "@/common/hooks/useProductData";
+import { useBusinessProductListData } from "@/common/hooks/useProductData";
 import { IBusinessResponse } from "@/common/responses/IBusinessResponse";
 import { IPaginatedResponse } from "@/common/responses/IPaginatedResponse";
-import { IProductResponse } from "@/common/responses/IProductResponse";
 import { IProfileImageResponse } from "@/common/responses/IProfileImageResponse";
 import { IProfileResponse } from "@/common/responses/IProfileResponse";
 import { AppAxios } from "@/common/utilities/AppAxios";
-import RippleButton from "@/components/common/RippleButton";
-import { ProductListItemProps } from "@/components/content/Dashboard/ProductArea/ProductListItem";
+import ProductCard from "@/components/content/ProductCard";
 import LayoutPrimary from "@/components/layouts/LayoutPrimary";
-import { Pagination } from "@mui/material";
+import { CircularProgress, Pagination } from "@mui/material";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { stringify } from "qs";
 import { ReactElement, useState } from "react";
-import { BsPencilSquare } from "react-icons/bs";
-import { GrTrash } from "react-icons/gr";
-import { HiMagnifyingGlass } from "react-icons/hi2";
 import style from "./index.module.scss";
 
 type BusinessPageProps = {
-  products: IPaginatedResponse<IProductResponse>;
+  // products: IPaginatedResponse<IProductResponse>;
   business: IBusinessResponse;
   businessImage: IProfileImageResponse;
 };
@@ -62,90 +57,28 @@ export const getServerSideProps = (async (context) => {
     )
     .then((result) => result.data?.data?.[0]);
 
-  const productQuery = stringify({});
+  // const productQuery = stringify({
+  //   page: context.query.productPage || 1,
+  //   limit: 1,
+  // });
 
-  const products = await AppAxios.client
-    .get<IPaginatedResponse<IProductResponse>>(
-      `v1/business/${business.id}/product?${productQuery}`,
-    )
-    .then((result) => result.data);
+  // const products = await AppAxios.client
+  //   .get<IPaginatedResponse<IProductResponse>>(
+  //     `v1/business/${business.id}/product?${productQuery}`,
+  //   )
+  //   .then((result) => result.data);
 
   return {
     props: {
-      products,
+      // products,
       business,
       businessImage,
     },
   };
 }) satisfies GetServerSideProps<BusinessPageProps>;
 
-function ProductListItem({ product }: ProductListItemProps) {
-  const router = useRouter();
-
-  const { data: productImgQuery } = useProductImageData(product.id);
-  const { image } = productImgQuery || {};
-
-  const BRCurrency = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-
-  const CompactNumber = new Intl.NumberFormat("pt-BR");
-
-  return (
-    <li className={style["container"]}>
-      <div className={style["image-box"]}>
-        <img
-          src={image?.imageUrl || Defaults.Placeholders.avatar}
-          width={128}
-          height={128}
-          alt={
-            product.name ? `Imagem para ${product.name}` : `Imagem do produto`
-          }
-          title={
-            product.name ? `Imagem para ${product.name}` : `Imagem do produto`
-          }
-        />
-      </div>
-      <div className={style["text-area"]}>
-        <div className={style["header"]}>
-          <p>
-            <span className={`txt-bold`}>SKU: </span>
-            {product.sku}
-          </p>
-          <p>
-            <span className={`txt-bold`}>Preço: </span>
-            {BRCurrency.format(Number(product.price))}
-          </p>
-          <p>
-            <span className={`txt-bold`}>Em estoque: </span>
-            {CompactNumber.format(product.stock)}
-          </p>
-        </div>
-        <div className={style["content"]}>
-          <p className={style["title"]}>{product.name}</p>
-          <p className={style["description"]}>{product.description}</p>
-        </div>
-      </div>
-      <div className={style["action-area"]}>
-        <a href={`/produto/${product.slug}`}>
-          <RippleButton className={`ripple-btn rounded`}>
-            <HiMagnifyingGlass className={style["btn-icon"]} />
-          </RippleButton>
-        </a>
-        <RippleButton className={`ripple-btn rounded`} onClick={() => {}}>
-          <BsPencilSquare className={style["btn-icon"]} />
-        </RippleButton>
-        <RippleButton className={`ripple-btn rounded`} onClick={() => {}}>
-          <GrTrash className={style["btn-icon"]} />
-        </RippleButton>
-      </div>
-    </li>
-  );
-}
-
 const ProductPage = ({
-  products,
+  // products,
   business,
   businessImage,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
@@ -153,11 +86,36 @@ const ProductPage = ({
 
   const [productPage, setProductPage] = useState(1);
 
-  const { razaoSocial, nomeFantasia, cnpj, profile } = business || {};
+  const {
+    razaoSocial,
+    nomeFantasia,
+    cnpj,
+    profile,
+    id: businessId,
+  } = business || {};
 
   const { image } = businessImage || {};
 
-  const { data: productList, pages } = products || {};
+  const { data: productListQuery, isLoading: isProductListLoading } =
+    useBusinessProductListData(businessId || 0, {
+      page: productPage,
+    });
+
+  const {
+    data: productList,
+    next,
+    previous,
+    pages,
+    total,
+  } = productListQuery || {};
+
+  // const { data: productList, pages } = products || {};
+
+  // const [csProductList, setCsProductList] = useState(productList);
+
+  // const pageQuery = stringify({
+  //   productPage,
+  // });
 
   return (
     <>
@@ -169,42 +127,53 @@ const ProductPage = ({
       </Head>
       <main className={style.container}>
         <div className={style.content}>
-          <h1>Store's Page</h1>
+          <div className={style["store-area"]}>
+            <div className={style["header"]}>
+              <h1>{razaoSocial}</h1>
+            </div>
 
-          <div className={style["image-box"]}>
-            <img
-              src={image?.imageUrl || Defaults.Placeholders.avatar}
-              width={128}
-              height={128}
-              alt={
-                nomeFantasia
-                  ? `Logomarca da ${nomeFantasia}`
-                  : "Logomarca da loja"
-              }
-              title={
-                nomeFantasia
-                  ? `Logomarca da ${nomeFantasia}`
-                  : "Logomarca da loja"
-              }
-            />
+            <div className={style["image-box"]}>
+              <img
+                src={image?.imageUrl || Defaults.Placeholders.avatar}
+                width={128}
+                height={128}
+                alt={
+                  nomeFantasia
+                    ? `Logomarca da ${nomeFantasia}`
+                    : "Logomarca da loja"
+                }
+                title={
+                  nomeFantasia
+                    ? `Logomarca da ${nomeFantasia}`
+                    : "Logomarca da loja"
+                }
+              />
+            </div>
+            <div className={style["text-group"]}>
+              <p>{nomeFantasia}</p>
+            </div>
           </div>
-          <p className={`txt-bold`}>{razaoSocial}</p>
-          <p>{nomeFantasia}</p>
-          <p>
-            <span className={`txt-bold`}>CNPJ: </span>
-            {cnpj}
-          </p>
-          <h2>Produtos</h2>
+
+          <hr className={style["divider"]} />
+
           <div className={style["product-list-area"]}>
+            <h2 className={style["txt-title"]}>Produtos</h2>
+
             <ul className={style["product-list"]}>
-              {productList
-                ? productList.map((product) => (
-                    <ProductListItem
-                      key={`product-${product.id}`}
-                      product={product}
-                    />
-                  ))
-                : null}
+              {isProductListLoading ? (
+                <li className={style["product-loading"]}>
+                  <CircularProgress />
+                </li>
+              ) : productList?.length ? (
+                productList.map((product) => (
+                  <ProductCard
+                    key={`product-${product.id}`}
+                    product={product}
+                  />
+                ))
+              ) : (
+                <p>A loja ainda não adicionou produtos</p>
+              )}
             </ul>
             <div className={style["pagination"]}>
               <Pagination

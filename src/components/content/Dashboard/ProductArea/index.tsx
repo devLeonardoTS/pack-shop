@@ -19,6 +19,7 @@ function DashboardProductArea({}: ProductAreaProps) {
       page,
     },
   );
+
   const {
     data: productList,
     next,

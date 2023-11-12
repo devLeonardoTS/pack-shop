@@ -1,17 +1,72 @@
 .container {
   max-width: 1200px;
   margin: auto;
-
   flex: 1;
-
-  display: flex;
-
-  align-items: center;
 }
 
 .content {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.product-txt-area {
+  width: 100%;
+  text-align: center;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  align-items: center;
+
+  .header-area {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    align-items: center;
+  }
+
+  .details-area {
+    display: flex;
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .txt-price {
+  }
+
+  .description-area {
+    width: 50%;
+    max-height: 200px;
+    overflow: auto;
+
+    text-align: initial;
+  }
+}
+
+.action-area {
+  display: flex;
+  gap: 48px;
+
+  justify-content: space-between;
+
+  .btn-link {
+  }
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+
+  .cta-btn {
+    background-color: black;
+    color: white;
+    padding: 12px;
+  }
+  .cta-btn:hover {
+    background-color: #111111;
+  }
 }

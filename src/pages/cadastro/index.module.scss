@@ -1,16 +1,12 @@
 .container {
   max-width: 1200px;
   margin: auto;
-
-  flex-grow: 1;
-
-  display: flex;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: center;
 }
 
 .registration-type {
