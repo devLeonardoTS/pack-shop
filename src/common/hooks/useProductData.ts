@@ -1,54 +1,111 @@
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
+import { stringify } from "qs";
 import { EImageType } from "../enums/EImageType";
-import { EProductType } from "../enums/EProductType";
+import { IActionCallbackOptions } from "../interfaces/IActionCallbackOptions";
+import { IPaginatedQueryOptions } from "../interfaces/IPaginatedQueryOptions";
+import { IPaginatedResponse } from "../responses/IPaginatedResponse";
+import { IProductImageResponse } from "../responses/IProductImageResponse";
+import { IProductResponse } from "../responses/IProductResponse";
 import { AppAxios } from "../utilities/AppAxios";
 
-export interface CreateProductImageRequest {
-  file: File;
-  imageType: EImageType;
-  productId: number;
-  imageId?: number;
-}
+const getBusinessProductListData = ({ queryKey }: any) => {
+  const [key, businessId, options] = queryKey;
 
-export interface CreateProductRequest {
-  sku: string;
-  name: string;
-  description: string;
-  brand: string;
-  price: number;
-  stock: number;
-  weightKg: number;
-  lengthCm: number;
-  heightCm: number;
-  widthCm: number;
-  manufacturedAt: Date;
-  expiresAt: Date;
-  productType: EProductType;
-  productCategories: string;
-  productTags: string;
-  isAvailable: boolean;
-  businessId: number;
-  slug?: string;
-}
-
-const createProduct = async (data: Partial<CreateProductRequest>) => {
-  return AppAxios.client.post(`v1/business/${data.businessId}/product`, data);
-};
-
-const createProductImage = async (data: Partial<CreateProductImageRequest>) => {
-  const formData = new FormData();
-
-  Object.entries(data).forEach(([key, value]) => {
-    formData.append(key, value as any);
+  const query = stringify({
+    page: options?.page,
+    limit: options?.limit,
+    // include: {
+    //   productImages: {
+    //     include: {
+    //       image: {
+    //         include: {
+    //           imageType: true,
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
   });
 
-  return AppAxios.client.post(`v1/product/${data.productId}/image`, formData);
+  return AppAxios.client.get<IPaginatedResponse<IProductResponse>>(
+    `v1/business/${businessId}/product?${query}`,
+  );
 };
 
-export const useCreateProduct = () => {
-  return useMutation(createProduct);
+export const useBusinessProductListData = (
+  resourceId: number,
+  options?: IPaginatedQueryOptions & IActionCallbackOptions,
+) => {
+  return useQuery(
+    ["product-list-data", resourceId, options],
+    getBusinessProductListData,
+    {
+      onSuccess: options?.onSuccess,
+      onError: options?.onError,
+      select: (response) => {
+        return response.data;
+      },
+    },
+  );
 };
 
-export const useCreateProductImage = () => {
-  return useMutation(createProductImage);
+const getProductData = ({ queryKey }: any) => {
+  const [key, resourceId] = queryKey;
+
+  const query = stringify({
+    include: {},
+  });
+
+  return AppAxios.client.get<IProductResponse>(
+    `v1/product/${resourceId}?${query}`,
+  );
+};
+
+export const useProductData = (
+  resourceId: number,
+  options?: IActionCallbackOptions,
+) => {
+  return useQuery(["product-data", resourceId], getProductData, {
+    onSuccess: options?.onSuccess,
+    onError: options?.onError,
+    select: (response) => {
+      return response.data;
+    },
+  });
+};
+
+const getProductImageData = ({ queryKey }: any) => {
+  const [key, resourceId, options] = queryKey;
+
+  const query = stringify({
+    page: options?.page,
+    limit: options?.limit,
+    image: {
+      imageType: {
+        type: options?.imageType,
+      },
+    },
+  });
+
+  return AppAxios.client.get<IPaginatedResponse<IProductImageResponse>>(
+    `v1/product/${resourceId}/image?${query}`,
+  );
+};
+
+export const useProductImageData = (
+  resourceId: number,
+  options?: { imageType: EImageType } & IPaginatedQueryOptions &
+    IActionCallbackOptions,
+) => {
+  return useQuery(
+    ["product-image-data", resourceId, options],
+    getProductImageData,
+    {
+      onSuccess: options?.onSuccess,
+      onError: options?.onError,
+      select: (response) => {
+        return response.data?.data[0];
+      },
+    },
+  );
 };

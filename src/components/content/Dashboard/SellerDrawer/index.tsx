@@ -11,7 +11,7 @@ import { Drawer } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { FaUserCog } from "react-icons/fa";
-import ProductFormArea from "../ProductFormArea";
+import DashboardProductArea from "../ProductArea";
 import style from "./index.module.scss";
 
 export type SellerDrawerProps = {
@@ -50,8 +50,16 @@ function SellerDrawer({ children }: SellerDrawerProps) {
               src={image?.imageUrl || Defaults.Placeholders.avatar}
               width={128}
               height={128}
-              alt={`Logomarca da ${nomeFantasia}` || "Logomarca da loja"}
-              title={`Logomarca da ${nomeFantasia}` || "Logomarca da loja"}
+              alt={
+                nomeFantasia
+                  ? `Logomarca da ${nomeFantasia}`
+                  : "Logomarca da loja"
+              }
+              title={
+                nomeFantasia
+                  ? `Logomarca da ${nomeFantasia}`
+                  : "Logomarca da loja"
+              }
             />
           </div>
         </div>
@@ -81,7 +89,7 @@ function SellerDrawer({ children }: SellerDrawerProps) {
         <li>
           <RippleButton
             className={`ripple-btn`}
-            onClick={() => setDashboardContent(<ProductFormArea />)}
+            onClick={() => setDashboardContent(<DashboardProductArea />)}
           >
             PRODUTOS
           </RippleButton>

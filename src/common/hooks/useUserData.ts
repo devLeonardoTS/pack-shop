@@ -44,7 +44,7 @@ export const useBusinessData = (
 ) => {
   return useQuery(["business-data", businessId], getBusinessData, {
     onSuccess: options?.onSuccess,
-    onError: options?.onFailure,
+    onError: options?.onError,
     select: (response) => {
       return response.data;
     },
@@ -61,7 +61,7 @@ export const useProfileImageData = (
     getProfileImageData,
     {
       onSuccess: options?.onSuccess,
-      onError: options?.onFailure,
+      onError: options?.onError,
       select: (response) => {
         return response.data?.data[0];
       },

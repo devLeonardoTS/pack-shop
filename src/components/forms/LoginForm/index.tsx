@@ -29,7 +29,7 @@ const LoginForm = () => {
               icon: "success",
             });
           },
-          onFailure: async () => {
+          onError: async () => {
             MySwal.fire({
               icon: "error",
               title: <p>Credenciais inválidas</p>,

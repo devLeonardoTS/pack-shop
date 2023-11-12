@@ -4,7 +4,7 @@ import { EProductType } from "@/common/enums/EProductType";
 import {
   useCreateProduct,
   useCreateProductImage,
-} from "@/common/hooks/useProductData";
+} from "@/common/hooks/useProductMutation";
 import { useBusinessDashboardStore } from "@/common/stores/BusinessDashboardStore";
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import RippleButton from "@/components/common/RippleButton";

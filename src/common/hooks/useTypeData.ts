@@ -9,7 +9,7 @@ const getImageTypes = () => {
 export const useImageTypeData = (options?: IActionCallbackOptions) => {
   return useQuery("image-type" as any, getImageTypes, {
     onSuccess: options?.onSuccess,
-    onError: options?.onFailure,
+    onError: options?.onError,
     select: (response) => {
       const result = response.data.map((imageType: any) => imageType.type);
       return result;

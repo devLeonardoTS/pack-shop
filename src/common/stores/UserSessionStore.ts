@@ -57,7 +57,7 @@ export const useUserSessionStore = create<SessionContext>()(
           })
           .catch((error) => {
             controller.abort();
-            options?.onFailure?.();
+            options?.onError?.();
 
             const errorData =
               error.response.data || error.request || error.message;

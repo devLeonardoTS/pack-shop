@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { ReactElement, useEffect } from "react";
 import style from "./index.module.scss";
 
-const LoginPage: NextPageWithLayout = () => {
+const DashboardPage: NextPageWithLayout = () => {
   const { push } = useRouter();
   const { user } = useUserSessionStore();
 
@@ -45,7 +45,7 @@ const LoginPage: NextPageWithLayout = () => {
   );
 };
 
-LoginPage.getLayout = function getLayout(page: ReactElement) {
+DashboardPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <LayoutDashboard>
       <HydrationZustand>{page}</HydrationZustand>
@@ -53,4 +53,4 @@ LoginPage.getLayout = function getLayout(page: ReactElement) {
   );
 };
 
-export default LoginPage;
+export default DashboardPage;
