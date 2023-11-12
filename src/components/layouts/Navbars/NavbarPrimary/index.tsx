@@ -1,5 +1,9 @@
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
+import RippleButton from "@/components/common/RippleButton";
 import Image from "next/image";
+import { BsCart3 } from "react-icons/bs";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import style from "./index.module.scss";
 
 const UnsignedMenuItems = () => {
@@ -15,8 +19,24 @@ const UnsignedMenuItems = () => {
 const SignedMenuItems = () => {
   const { signOut } = useUserSessionStore();
 
+  const MySwal = withReactContent(Swal);
+
+  const onSignOut = () =>
+    MySwal.fire({
+      toast: true,
+      timer: 3000,
+      timerProgressBar: true,
+      title: "Usuário desconectado!",
+      position: "bottom-right",
+    });
+
   return (
     <>
+      <li>
+        <RippleButton className={`ripple-btn rounded`} onClick={() => {}}>
+          <BsCart3 className={style["btn-icon"]} />
+        </RippleButton>
+      </li>
       <li>
         <p>
           <a href="/dashboard" className={`link`}>
@@ -25,7 +45,9 @@ const SignedMenuItems = () => {
         </p>
       </li>
       <li>
-        <button onClick={() => signOut()}>SIGN-OUT</button>
+        <button onClick={() => signOut({ onSuccess: () => onSignOut() })}>
+          SIGN-OUT
+        </button>
       </li>
     </>
   );

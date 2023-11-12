@@ -6,7 +6,7 @@ interface StoreContext {
   setDashboardContent: (content?: ReactElement) => void;
 }
 
-export const useBusinessDashboardStore = create<StoreContext>()((set, get) => {
+export const useDashboardStore = create<StoreContext>()((set, get) => {
   const setDashboardContent = (content?: ReactElement) => {
     set({ content });
   };

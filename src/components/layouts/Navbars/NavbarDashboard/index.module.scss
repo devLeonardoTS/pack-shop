@@ -6,6 +6,10 @@
   align-items: center;
 
   .left-area {
+    .logomark {
+      margin: 6px;
+    }
+
     .btn {
       display: flex;
       align-items: center;
@@ -31,6 +35,8 @@
   .right-area {
     display: flex;
     gap: 12px;
+
+    align-items: center;
 
     a:hover {
       color: orange;

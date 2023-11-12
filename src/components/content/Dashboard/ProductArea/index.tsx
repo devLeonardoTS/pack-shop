@@ -1,5 +1,5 @@
 import { useBusinessProductListData } from "@/common/hooks/useProductData";
-import { useBusinessDashboardStore } from "@/common/stores/BusinessDashboardStore";
+import { useDashboardStore } from "@/common/stores/BusinessDashboardStore";
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import RippleButton from "@/components/common/RippleButton";
 import { Pagination } from "@mui/material";
@@ -11,7 +11,7 @@ import ProductListItem from "./ProductListItem";
 export type ProductAreaProps = {};
 
 function DashboardProductArea({}: ProductAreaProps) {
-  const { setDashboardContent } = useBusinessDashboardStore();
+  const { setDashboardContent } = useDashboardStore();
 
   const { user } = useUserSessionStore();
   const { businessId } = user || {};

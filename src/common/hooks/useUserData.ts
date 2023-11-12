@@ -4,6 +4,7 @@ import { EImageType } from "../enums/EImageType";
 import { IActionCallbackOptions } from "../interfaces/IActionCallbackOptions";
 import { IPaginatedQueryOptions } from "../interfaces/IPaginatedQueryOptions";
 import { IBusinessResponse } from "../responses/IBusinessResponse";
+import { IConsumerResponse } from "../responses/IConsumerResponse";
 import { IPaginatedResponse } from "../responses/IPaginatedResponse";
 import { IProfileImageResponse } from "../responses/IProfileImageResponse";
 import { AppAxios } from "../utilities/AppAxios";
@@ -53,6 +54,16 @@ const getBusinessData = ({ queryKey }: any) => {
   );
 };
 
+const getConsumerData = ({ queryKey }: any) => {
+  const [key, resourceId] = queryKey;
+
+  const query = stringify({});
+
+  return AppAxios.client.get<IConsumerResponse>(
+    `v1/consumer/${resourceId}?${query}`,
+  );
+};
+
 const getProfileImageData = ({ queryKey }: any) => {
   const [key, profileId, imageType] = queryKey;
 
@@ -74,6 +85,18 @@ export const useBusinessData = (
   options?: IActionCallbackOptions,
 ) => {
   return useQuery(["business-data", businessId], getBusinessData, {
+    onSuccess: options?.onSuccess,
+    onError: options?.onError,
+    select: (response) => {
+      return response.data;
+    },
+  });
+};
+export const useConsumerData = (
+  resourceId: number,
+  options?: IActionCallbackOptions,
+) => {
+  return useQuery(["consumer-data", resourceId], getConsumerData, {
     onSuccess: options?.onSuccess,
     onError: options?.onError,
     select: (response) => {

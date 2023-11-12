@@ -1,27 +1,42 @@
 import { EAccountOriginType } from "@/common/enums/EAccountOriginType";
-import { EAccountRoleType } from "@/common/enums/EAccountRoleType";
 import { EEstado } from "@/common/enums/EEstado";
 import { EHttpStatusCode } from "@/common/enums/EHttpStatusCode";
+import { EImageType } from "@/common/enums/EImageType";
 import { EPhoneType } from "@/common/enums/EPhoneType";
-import { useCreateFullPjAccount } from "@/common/hooks/useAccountMutation";
+import {
+  useCreateFullPjAccount,
+  useCreateProfileImage,
+} from "@/common/hooks/useAccountMutation";
+import RippleButton from "@/components/common/RippleButton";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { EBusinessType } from "../../../common/enums/EBusinessType";
 import style from "./index.module.scss";
 
 const PJForm = () => {
+  const router = useRouter();
+
   const MySwal = withReactContent(Swal);
 
+  const [imagePreview, setImagePreview] = useState<any>();
+  const [file, setFile] = useState<any>();
+
   const {
-    mutate: createPjAccount,
-    isSuccess,
-    error,
+    mutateAsync: createPjAccount,
+    isSuccess: isPjAccountCreated,
+    isLoading: isPjAccountCreationLoading,
+    error: pjAccountCreationError,
   } = useCreateFullPjAccount();
 
-  const router = useRouter();
+  const {
+    mutateAsync: createProfileImage,
+    isSuccess: isProfileImageCreated,
+    isLoading: isProfileImageCreationLoading,
+    error: profileImageCreationError,
+  } = useCreateProfileImage();
 
   const formik = useFormik({
     initialValues: {
@@ -32,6 +47,8 @@ const PJForm = () => {
       inscricaoEstadual: "",
       inscricaoMunicipal: "",
       businessType: "",
+      addressTitle: "",
+      addressDescription: "",
       pais: "",
       cep: "",
       estado: "",
@@ -52,13 +69,15 @@ const PJForm = () => {
       confirmPassword: "",
     },
     onSubmit: async (values) => {
-      await createPjAccount({
+      console.log("[PJForm]: Creating PJ account data.");
+      const accountResponse = await createPjAccount({
         originType: EAccountOriginType.LOCAL,
-        roleType: EAccountRoleType.USER,
         email: values.email,
         password: values.password,
         confirmPassword: values.confirmPassword,
         isSubscribedToOffers: Boolean(values.isSubscribedToOffers),
+        addressTitle: values.addressTitle,
+        addressDescription: values.addressDescription,
         pais: values.pais,
         cep: values.cep,
         estado: values.estado,
@@ -66,6 +85,7 @@ const PJForm = () => {
         bairro: values.bairro,
         logradouro: values.logradouro,
         numero: values.numero,
+        complemento: values.complemento,
         phone: values.phoneNumber,
         phoneType: values.phoneType as EPhoneType,
         cnpj: values.cnpj,
@@ -78,23 +98,63 @@ const PJForm = () => {
         cpf: values.ownerCpf,
         fullName: values.ownerName,
       });
+
+      if (accountResponse.data) {
+        console.log(
+          "[PJForm]: Creating PJ account image data.",
+          accountResponse.data,
+        );
+        await createProfileImage({
+          file: file,
+          profileId: accountResponse.data.profile.id,
+          imageType: EImageType.PROFILE_AVATAR_1,
+        });
+      }
     },
   });
 
   useEffect(() => {
-    if (isSuccess) {
+    if (file && file instanceof File) {
+      setImagePreview(URL.createObjectURL(file));
+    } else if (file) {
+      setImagePreview(file);
+    } else {
+      setImagePreview(undefined);
+    }
+  }, [file]);
+
+  useEffect(() => {
+    if (isPjAccountCreationLoading || isProfileImageCreationLoading) {
       MySwal.fire({
-        title: <p>Cadastro realizado!</p>,
+        title: "Loading...",
         toast: true,
-        timerProgressBar: true,
-        timer: 2000,
+        showCloseButton: false,
+        showConfirmButton: false,
         position: "bottom-right",
-        icon: "success",
+        didOpen: () => {
+          MySwal.showLoading(null);
+        },
       });
     }
 
-    if (error) {
-      const reqError = error as any;
+    if (isPjAccountCreated && isProfileImageCreated) {
+      MySwal.fire({
+        title: <p>Usuário cadastrado!</p>,
+        text: "Direcionando para a tela de Login...",
+        toast: true,
+        timerProgressBar: true,
+        timer: 5000,
+        position: "bottom-right",
+        icon: "success",
+        didClose: () => router.push("/login"),
+      });
+    }
+
+    if (pjAccountCreationError) {
+      const reqError = pjAccountCreationError as any;
+      const error = reqError?.response?.data;
+
+      console.log(reqError);
 
       let message;
       switch (reqError.statusCode) {
@@ -115,7 +175,38 @@ const PJForm = () => {
         icon: "error",
       });
     }
-  }, [isSuccess, error]);
+
+    if (profileImageCreationError) {
+      const reqError = profileImageCreationError as any;
+      const error = reqError?.response?.data;
+
+      let message;
+      switch (error.statusCode) {
+        case EHttpStatusCode.BAD_REQUEST:
+          message =
+            "A imagem enviada está no formato correto? Verifique e tente novamente.";
+          break;
+        default:
+          message = "A imagem não foi cadastrada, tente novamente mais tarde";
+          break;
+      }
+
+      MySwal.fire({
+        title: <p>Ops...</p>,
+        text: message,
+        toast: true,
+        position: "bottom-right",
+        icon: "error",
+      });
+    }
+  }, [
+    isPjAccountCreated,
+    isPjAccountCreationLoading,
+    pjAccountCreationError,
+    isProfileImageCreated,
+    isProfileImageCreationLoading,
+    profileImageCreationError,
+  ]);
 
   return (
     <div className={style.container}>
@@ -130,6 +221,32 @@ const PJForm = () => {
         <div className={style.content}>
           <fieldset>
             <legend>Dados do Negócio</legend>
+            <div className={style["img-input-group"]}>
+              <div className={style["btn-container"]}>
+                <p>Clique para selecionar uma logomarca</p>
+                <RippleButton className={style["btn"]}>
+                  <label htmlFor="productImage">
+                    <img
+                      src={imagePreview || "./images/logomark.svg"}
+                      height={192}
+                      width={192}
+                      alt={"Prévia da imagem do produto"}
+                    />
+                  </label>
+                </RippleButton>
+              </div>
+              <input
+                type="file"
+                id="productImage"
+                name="productImage"
+                accept="image/*"
+                hidden
+                onChange={(ev) => {
+                  setFile(ev.target.files?.[0]);
+                }}
+              />
+            </div>
+
             <div className={style["input-group"]}>
               <label htmlFor="razaoSocial">Razão Social *</label>
               <input
@@ -226,6 +343,28 @@ const PJForm = () => {
 
           <fieldset>
             <legend>Localização</legend>
+            <div className={style["input-group"]}>
+              <label htmlFor="addressTitle">Título *</label>
+              <input
+                type="text"
+                id="addressTitle"
+                name="addressTitle"
+                onChange={formik.handleChange}
+                value={formik.values.addressTitle}
+                required
+              />
+            </div>
+
+            <div className={style["input-group"]}>
+              <label htmlFor="addressDescription">Descrição *</label>
+              <textarea
+                id="addressDescription"
+                name="addressDescription"
+                onChange={formik.handleChange}
+                value={formik.values.addressDescription}
+              />
+            </div>
+
             <div className={style["input-group"]}>
               <label htmlFor="pais">País *</label>
               <input

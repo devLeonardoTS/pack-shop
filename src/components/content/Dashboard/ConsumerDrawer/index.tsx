@@ -1,7 +1,7 @@
 import { Defaults } from "@/common/constants/Defaults";
 import { EImageType } from "@/common/enums/EImageType";
 import {
-  useBusinessData,
+  useConsumerData,
   useProfileImageData,
 } from "@/common/hooks/useUserData";
 import { useDashboardStore } from "@/common/stores/BusinessDashboardStore";
@@ -10,28 +10,28 @@ import RippleButton from "@/components/common/RippleButton";
 import { Drawer } from "@mui/material";
 import { useRouter } from "next/router";
 import { FaUserCog } from "react-icons/fa";
-import DashboardProductArea from "../ProductArea";
+import OrdersArea from "../OrdersArea";
 import style from "./index.module.scss";
 
-export type SellerDrawerProps = {
+export type ConsumerDrawerProps = {
   children?: React.ReactNode;
 };
 
-function SellerDrawer({ children }: SellerDrawerProps) {
+function ConsumerDrawer({ children }: ConsumerDrawerProps) {
   const { setDashboardContent } = useDashboardStore();
 
   const router = useRouter();
 
   const { user } = useUserSessionStore();
 
-  const { data: businessQuery } = useBusinessData(user?.businessId || 0);
-  const { razaoSocial, nomeFantasia } = businessQuery || {};
+  const { data: consumerData } = useConsumerData(user?.consumerId || 0);
+  const { fullName, socialName } = consumerData || {};
 
-  const { data: profileImgQuery } = useProfileImageData(
+  const { data: profileImgData } = useProfileImageData(
     user?.profileId || 0,
     EImageType.PROFILE_AVATAR_1,
   );
-  const { image } = profileImgQuery || {};
+  const { image } = profileImgData || {};
 
   return (
     <Drawer
@@ -45,22 +45,16 @@ function SellerDrawer({ children }: SellerDrawerProps) {
               src={image?.imageUrl || Defaults.Placeholders.avatar}
               width={128}
               height={128}
-              alt={
-                nomeFantasia
-                  ? `Logomarca da ${nomeFantasia}`
-                  : "Logomarca da loja"
-              }
+              alt={socialName ? `Avatar do ${socialName}` : "Avatar do usuário"}
               title={
-                nomeFantasia
-                  ? `Logomarca da ${nomeFantasia}`
-                  : "Logomarca da loja"
+                socialName ? `Avatar do ${socialName}` : "Avatar do usuário"
               }
             />
           </div>
         </div>
         <div className={style["text-group"]}>
-          <p className={style["title"]}>{razaoSocial}</p>
-          <p className={style["store"]}>{nomeFantasia}</p>
+          <p className={style["title"]}>{fullName}</p>
+          <p className={style["store"]}>{socialName}</p>
         </div>
         <menu className={style["horizontal-menu"]}>
           <li>
@@ -84,20 +78,21 @@ function SellerDrawer({ children }: SellerDrawerProps) {
         <li>
           <RippleButton
             className={`ripple-btn`}
-            onClick={() => setDashboardContent(<DashboardProductArea />)}
+            onClick={() => setDashboardContent(<OrdersArea />)}
           >
-            PRODUTOS
+            PEDIDOS
           </RippleButton>
         </li>
       </menu>
       <hr />
       <menu className={style["secondary-menu"]}>
         <li>
-          <a href="/">
-            <RippleButton className={`ripple-btn rounded-sm`}>
-              VOLTAR
-            </RippleButton>
-          </a>
+          <RippleButton
+            className={`ripple-btn rounded-sm`}
+            onClick={() => router.push("/")}
+          >
+            VOLTAR
+          </RippleButton>
         </li>
       </menu>
       <div className={style["footer"]}></div>
@@ -105,4 +100,4 @@ function SellerDrawer({ children }: SellerDrawerProps) {
   );
 }
 
-export default SellerDrawer;
+export default ConsumerDrawer;

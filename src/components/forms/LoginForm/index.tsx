@@ -1,5 +1,7 @@
+import { useConsumerCartStore } from "@/common/stores/ConsumerCartStore";
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import { useFormik } from "formik";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import style from "./index.module.scss";
@@ -9,17 +11,20 @@ const LoginForm = () => {
 
   const { signIn, status, error } = useUserSessionStore();
 
+  const { clearProducts } = useConsumerCartStore();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       signIn(
         { email: values.email, password: values.password },
         {
           onSuccess: async () => {
+            clearProducts();
+
             MySwal.fire({
               title: <p>Usuário autenticado</p>,
               toast: true,
@@ -39,6 +44,21 @@ const LoginForm = () => {
       );
     },
   });
+
+  useEffect(() => {
+    if (status === "loading") {
+      MySwal.fire({
+        title: "Loading...",
+        toast: true,
+        showCloseButton: false,
+        showConfirmButton: false,
+        position: "bottom-right",
+        didOpen: () => {
+          MySwal.showLoading(null);
+        },
+      });
+    }
+  }, [status]);
 
   return (
     <form onSubmit={formik.handleSubmit} className={style.container}>

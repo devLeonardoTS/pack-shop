@@ -1,4 +1,4 @@
-import { useBusinessDashboardStore } from "@/common/stores/BusinessDashboardStore";
+import { useDashboardStore } from "@/common/stores/BusinessDashboardStore";
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import { HydrationZustand } from "@/components/common/HydrationZustand";
 import LayoutDashboard from "@/components/layouts/LayoutDashboard";
@@ -12,7 +12,7 @@ const DashboardPage: NextPageWithLayout = () => {
   const { push } = useRouter();
   const { user } = useUserSessionStore();
 
-  const { content } = useBusinessDashboardStore();
+  const { content } = useDashboardStore();
 
   useEffect(() => {
     if (!user) {
@@ -27,7 +27,7 @@ const DashboardPage: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>PackShop - Marketplace</title>
+        <title>PackShop - Dashboard</title>
         <meta name="description" content="PackShop - Your new way to buy" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -37,7 +37,7 @@ const DashboardPage: NextPageWithLayout = () => {
       ) : (
         <main className={style.container}>
           <div className={style.content}>
-            <h1>User's Dashboard</h1>
+            <h1>Dashboard do Usuário</h1>
           </div>
         </main>
       )}
@@ -47,9 +47,9 @@ const DashboardPage: NextPageWithLayout = () => {
 
 DashboardPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <LayoutDashboard>
-      <HydrationZustand>{page}</HydrationZustand>
-    </LayoutDashboard>
+    <HydrationZustand>
+      <LayoutDashboard>{page}</LayoutDashboard>
+    </HydrationZustand>
   );
 };
 

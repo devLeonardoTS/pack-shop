@@ -5,7 +5,7 @@ import {
   useCreateProduct,
   useCreateProductImage,
 } from "@/common/hooks/useProductMutation";
-import { useBusinessDashboardStore } from "@/common/stores/BusinessDashboardStore";
+import { useDashboardStore } from "@/common/stores/BusinessDashboardStore";
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import RippleButton from "@/components/common/RippleButton";
 import { useFormik } from "formik";
@@ -22,7 +22,7 @@ const ProductForm = () => {
 
   const MySwal = withReactContent(Swal);
 
-  const { setDashboardContent } = useBusinessDashboardStore();
+  const { setDashboardContent } = useDashboardStore();
 
   const {
     mutateAsync: createProduct,
@@ -30,6 +30,7 @@ const ProductForm = () => {
     isLoading: isProductCreationLoading,
     error: productCreationError,
   } = useCreateProduct();
+
   const {
     mutateAsync: createProductImage,
     isSuccess: isProductImageCreated,

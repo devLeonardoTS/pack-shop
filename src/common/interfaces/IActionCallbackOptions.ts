@@ -1,4 +1,4 @@
 export interface IActionCallbackOptions {
-  onSuccess?: () => Promise<void> | void;
-  onError?: () => Promise<void> | void;
+  onSuccess?: () => Promise<any> | any;
+  onError?: () => Promise<any> | any;
 }

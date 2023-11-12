@@ -14,5 +14,13 @@
   .right-area {
     display: flex;
     gap: 12px;
+
+    align-items: center;
   }
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  margin: 8px;
 }
