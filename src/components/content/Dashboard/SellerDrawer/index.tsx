@@ -9,7 +9,6 @@ import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import RippleButton from "@/components/common/RippleButton";
 import { Drawer } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { FaUserCog } from "react-icons/fa";
 import DashboardProductArea from "../ProductArea";
 import style from "./index.module.scss";
@@ -33,10 +32,6 @@ function SellerDrawer({ children }: SellerDrawerProps) {
     EImageType.PROFILE_AVATAR_1,
   );
   const { image } = profileImgQuery || {};
-
-  useEffect(() => {
-    console.log(profileImgQuery);
-  }, []);
 
   return (
     <Drawer

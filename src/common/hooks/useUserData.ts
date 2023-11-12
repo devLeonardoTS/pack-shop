@@ -2,10 +2,41 @@ import { useQuery } from "@tanstack/react-query";
 import { stringify } from "qs";
 import { EImageType } from "../enums/EImageType";
 import { IActionCallbackOptions } from "../interfaces/IActionCallbackOptions";
+import { IPaginatedQueryOptions } from "../interfaces/IPaginatedQueryOptions";
 import { IBusinessResponse } from "../responses/IBusinessResponse";
 import { IPaginatedResponse } from "../responses/IPaginatedResponse";
 import { IProfileImageResponse } from "../responses/IProfileImageResponse";
 import { AppAxios } from "../utilities/AppAxios";
+
+const getBusinessListData = ({ queryKey }: any) => {
+  const [key, options] = queryKey;
+
+  const query = stringify({
+    page: options?.page,
+    limit: options?.limit,
+    include: {
+      businessType: true,
+      businessOwner: true,
+      profile: true,
+    },
+  });
+
+  return AppAxios.client.get<IPaginatedResponse<IBusinessResponse>>(
+    `v1/business?${query}`,
+  );
+};
+
+export const useBusinessListData = (
+  options?: IPaginatedQueryOptions & IActionCallbackOptions,
+) => {
+  return useQuery(["business-list-data", options], getBusinessListData, {
+    onSuccess: options?.onSuccess,
+    onError: options?.onError,
+    select: (response) => {
+      return response.data;
+    },
+  });
+};
 
 const getBusinessData = ({ queryKey }: any) => {
   const [key, businessId] = queryKey;

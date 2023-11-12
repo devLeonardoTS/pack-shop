@@ -57,22 +57,11 @@ export const getServerSideProps = (async (context) => {
     )
     .then((result) => result.data?.data?.[0]);
 
-  // const productQuery = stringify({
-  //   page: context.query.productPage || 1,
-  //   limit: 1,
-  // });
-
-  // const products = await AppAxios.client
-  //   .get<IPaginatedResponse<IProductResponse>>(
-  //     `v1/business/${business.id}/product?${productQuery}`,
-  //   )
-  //   .then((result) => result.data);
-
   return {
     props: {
       // products,
-      business,
-      businessImage,
+      business: business || null,
+      businessImage: businessImage || null,
     },
   };
 }) satisfies GetServerSideProps<BusinessPageProps>;

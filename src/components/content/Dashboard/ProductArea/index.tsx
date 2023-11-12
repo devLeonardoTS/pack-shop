@@ -1,13 +1,18 @@
 import { useBusinessProductListData } from "@/common/hooks/useProductData";
+import { useBusinessDashboardStore } from "@/common/stores/BusinessDashboardStore";
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
+import RippleButton from "@/components/common/RippleButton";
 import { Pagination } from "@mui/material";
 import { useState } from "react";
+import ProductFormArea from "../ProductFormArea";
 import style from "./index.module.scss";
 import ProductListItem from "./ProductListItem";
 
 export type ProductAreaProps = {};
 
 function DashboardProductArea({}: ProductAreaProps) {
+  const { setDashboardContent } = useBusinessDashboardStore();
+
   const { user } = useUserSessionStore();
   const { businessId } = user || {};
 
@@ -36,6 +41,7 @@ function DashboardProductArea({}: ProductAreaProps) {
           <span>Produtos encontrados: </span>
           {total}
         </p>
+
         <div className={style["product-list-area"]}>
           <ul className={style["product-list"]}>
             {productList
@@ -47,7 +53,7 @@ function DashboardProductArea({}: ProductAreaProps) {
                 ))
               : null}
           </ul>
-          <div className={style["pagination"]}>
+          <div className={style["actions-area"]}>
             <Pagination
               variant="outlined"
               shape="rounded"
@@ -55,6 +61,14 @@ function DashboardProductArea({}: ProductAreaProps) {
               page={page}
               onChange={(ev, value) => setPage(value)}
             />
+          </div>
+          <div className={style["sticky-div"]}>
+            <RippleButton
+              className={style["add-btn"]}
+              onClick={() => setDashboardContent(<ProductFormArea />)}
+            >
+              Novo produto
+            </RippleButton>
           </div>
         </div>
       </div>

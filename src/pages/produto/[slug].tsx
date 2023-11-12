@@ -59,9 +59,9 @@ export const getServerSideProps = (async (context) => {
 
   return {
     props: {
-      product,
-      productImages,
-      business,
+      product: product || null,
+      productImages: productImages || null,
+      business: business || null,
     },
   };
 }) satisfies GetServerSideProps<ProductPageProps>;
@@ -158,18 +158,23 @@ const ProductPage = ({
               </div>
             </div>
 
-            <p className={style["txt-price"]}>
-              {BRCurrency.format(Number(price))}
-            </p>
+            <div className={style["price-area"]}>
+              <h2>PREÇO</h2>
+              <p className={style["txt-price"]}>
+                {BRCurrency.format(Number(price))}
+              </p>
+            </div>
+
             <div className={style["description-area"]}>
+              <h2>DESCRIÇÃO</h2>
               <p className={style["txt-description"]}>{description}</p>
             </div>
           </div>
 
           <div className={style["action-area"]}>
-            <RippleButton className={style["btn-link"]}>
-              <a href={`/loja/${slug}`}>Ir para Loja</a>
-            </RippleButton>
+            <a href={`/loja/${slug}`} className={style["btn-link"]}>
+              <RippleButton>Ir para Loja</RippleButton>
+            </a>
             <RippleButton className={`${style["cta-btn"]}`} onClick={() => {}}>
               ADICIONAR AO CARRINHO
             </RippleButton>

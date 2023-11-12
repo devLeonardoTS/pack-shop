@@ -97,3 +97,7 @@ button:hover,
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
+.divider {
+  width: 100%;
+}

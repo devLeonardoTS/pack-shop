@@ -23,6 +23,11 @@
 
   align-items: center;
 
+  h1,
+  h2 {
+    text-transform: uppercase;
+  }
+
   .header-area {
     display: flex;
     flex-direction: column;
@@ -37,15 +42,44 @@
     gap: 6px;
   }
 
-  .txt-price {
+  .price-area {
+    box-shadow: -3px -3px 1px 1px black;
+    border: 1px solid black;
+
+    padding: 12px;
+
+    width: 50%;
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    .txt-price {
+      font-weight: bolder;
+    }
   }
 
   .description-area {
+    box-shadow: -3px -3px 1px 1px black;
+    border: 1px solid black;
+
+    padding: 12px;
+
     width: 50%;
+
     max-height: 200px;
     overflow: auto;
 
     text-align: initial;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
   }
 }
 
@@ -56,9 +90,16 @@
   justify-content: space-between;
 
   .btn-link {
+    flex: 1;
   }
-  .btn-link:hover {
+  .btn-link button {
+    width: 100%;
+    padding: 12px;
+  }
+  .btn-link:hover button {
+    font-weight: bold;
     text-decoration: underline;
+    background-color: rgba(0, 0, 0, 0.125);
   }
 
   .cta-btn {

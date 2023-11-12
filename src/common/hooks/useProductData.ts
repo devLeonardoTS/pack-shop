@@ -8,6 +8,31 @@ import { IProductImageResponse } from "../responses/IProductImageResponse";
 import { IProductResponse } from "../responses/IProductResponse";
 import { AppAxios } from "../utilities/AppAxios";
 
+const getProductListData = ({ queryKey }: any) => {
+  const [key, options] = queryKey;
+
+  const query = stringify({
+    page: options?.page,
+    limit: options?.limit,
+  });
+
+  return AppAxios.client.get<IPaginatedResponse<IProductResponse>>(
+    `v1/product?${query}`,
+  );
+};
+
+export const useProductListData = (
+  options?: IPaginatedQueryOptions & IActionCallbackOptions,
+) => {
+  return useQuery(["product-list-data", options], getProductListData, {
+    onSuccess: options?.onSuccess,
+    onError: options?.onError,
+    select: (response) => {
+      return response.data;
+    },
+  });
+};
+
 const getBusinessProductListData = ({ queryKey }: any) => {
   const [key, businessId, options] = queryKey;
 

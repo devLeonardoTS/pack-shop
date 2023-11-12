@@ -8,4 +8,78 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  gap: 12px;
+}
+
+.product-list-area {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  width: 100%;
+
+  .txt-title {
+    text-align: center;
+  }
+
+  .loading {
+    align-self: center;
+    min-height: 320px;
+  }
+
+  .list {
+    overflow: auto;
+
+    display: grid;
+
+    grid-auto-flow: column;
+
+    gap: 24px;
+    padding: 12px;
+
+    justify-content: space-evenly;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.business-list-area {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  width: 100%;
+
+  .txt-title {
+    text-align: center;
+  }
+
+  .loading {
+    align-self: center;
+    min-height: 320px;
+  }
+
+  .list {
+    overflow: auto;
+
+    display: grid;
+
+    grid-auto-flow: column;
+
+    gap: 24px;
+    padding: 12px;
+
+    justify-content: space-evenly;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
 }
