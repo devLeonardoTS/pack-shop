@@ -1,0 +1,18 @@
+.navbar {
+  display: flex;
+  gap: 12px;
+
+  justify-content: space-between;
+  align-items: center;
+
+  .left-area {
+    .logomark {
+      margin: 6px;
+    }
+  }
+
+  .right-area {
+    display: flex;
+    gap: 12px;
+  }
+}

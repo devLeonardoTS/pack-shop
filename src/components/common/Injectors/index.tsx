@@ -1,3 +1,4 @@
+import { StyledEngineProvider } from "@mui/material/styles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export type InjectorProps = {
@@ -9,7 +10,9 @@ const queryClient = new QueryClient();
 function Injectors({ children }: InjectorProps) {
   return (
     <>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <StyledEngineProvider injectFirst>{children}</StyledEngineProvider>
+      </QueryClientProvider>
     </>
   );
 }

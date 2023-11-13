@@ -1,0 +1,54 @@
+.navbar {
+  display: flex;
+  gap: 12px;
+
+  justify-content: space-between;
+  align-items: center;
+
+  .left-area {
+    .logomark {
+      margin: 6px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+      background-color: transparent;
+
+      border-radius: 50%;
+
+      .icon {
+        width: 32px;
+        height: 32px;
+        margin: 6px;
+      }
+    }
+
+    .btn:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  .right-area {
+    display: flex;
+    gap: 12px;
+
+    align-items: center;
+
+    a:hover {
+      color: orange;
+    }
+  }
+}
+
+.drawer {
+  @media only screen and (max-width: 425px) {
+    max-width: 100vw;
+  }
+  @media only screen and (min-width: 426px) and (max-width: 768px) {
+    max-width: 50vw;
+  }
+}

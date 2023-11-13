@@ -1,0 +1,4 @@
+export enum EImageType {
+  PROFILE_AVATAR_1 = "PROFILE:AVATAR:1",
+  PRODUCT_DISPLAY_1 = "PRODUCT:DISPLAY:1",
+}

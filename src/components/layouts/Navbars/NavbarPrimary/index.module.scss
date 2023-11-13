@@ -1,0 +1,89 @@
+.navbar {
+  display: flex;
+  gap: 12px;
+
+  justify-content: space-between;
+  align-items: center;
+
+  .left-area {
+    .logomark {
+      margin: 6px;
+    }
+  }
+
+  .right-area {
+    display: flex;
+    gap: 12px;
+
+    align-items: center;
+  }
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  margin: 8px;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+  box-shadow: -3px -3px 1px 1px black;
+
+  border-radius: 0;
+
+  .product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    min-height: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    max-width: 300px;
+
+    overflow: auto;
+  }
+
+  .info-area {
+    margin: 12px;
+
+    gap: 12px;
+
+    font-size: 14px;
+
+    .txt-total-price {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      text-align: center;
+    }
+
+    .txt-total-price span {
+      font-weight: bold;
+    }
+  }
+
+  .actions-area {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 12px;
+
+    gap: 12px;
+
+    .cta-btn {
+      background-color: black;
+      color: white;
+      padding: 4px;
+    }
+    .cta-btn:hover {
+      background-color: #111111;
+    }
+  }
+}

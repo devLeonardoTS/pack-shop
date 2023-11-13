@@ -1,0 +1,33 @@
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.registration-type {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .title {
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+.input-box {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+
+  .input-group {
+    display: flex;
+    gap: 6px;
+  }
+}

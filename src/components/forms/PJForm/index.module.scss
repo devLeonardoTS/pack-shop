@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  h2 {
+    font-size: 16px;
+  }
+}
+
+.form .content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+  }
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 4px;
+
+  input,
+  select,
+  textarea {
+    padding: 4px;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    padding: 4px;
+    font-weight: bold;
+  }
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 6px;
+}
+
+.img-input-group {
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    text-align: center;
+
+    .btn label {
+      width: 100%;
+      padding: 12px;
+    }
+    .btn label:hover {
+      background-color: rgba(20, 20, 20, 0.125);
+      cursor: pointer;
+    }
+  }
+}
