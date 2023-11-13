@@ -14,6 +14,9 @@ const getProductListData = ({ queryKey }: any) => {
   const query = stringify({
     page: options?.page,
     limit: options?.limit,
+    orderBy: {
+      id: "desc",
+    },
   });
 
   return AppAxios.client.get<IPaginatedResponse<IProductResponse>>(
@@ -39,6 +42,9 @@ const getBusinessProductListData = ({ queryKey }: any) => {
   const query = stringify({
     page: options?.page,
     limit: options?.limit,
+    orderBy: {
+      id: "desc",
+    },
     // include: {
     //   productImages: {
     //     include: {
