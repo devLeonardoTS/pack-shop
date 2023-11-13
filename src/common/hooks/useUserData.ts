@@ -20,6 +20,9 @@ const getBusinessListData = ({ queryKey }: any) => {
       businessOwner: true,
       profile: true,
     },
+    orderBy: {
+      id: "desc",
+    },
   });
 
   return AppAxios.client.get<IPaginatedResponse<IBusinessResponse>>(
