@@ -6,6 +6,7 @@ import { EStoreKeys } from "../enums/EStoreKeys";
 import { IActionCallbackOptions } from "../interfaces/IActionCallbackOptions";
 import { IUserAuthResponse } from "../responses/IUserAuthResponse";
 import { AppAxios } from "../utilities/AppAxios";
+import { useConsumerCartStore } from "./ConsumerCartStore";
 
 export interface LocalUserCredential {
   email: string;
@@ -34,6 +35,8 @@ interface SessionContext {
   ): Promise<void>;
   signOut(options?: IActionCallbackOptions): void;
 }
+
+const clearCart = useConsumerCartStore.getState().clearItems;
 
 export const useUserSessionStore = create<SessionContext>()(
   persist(
@@ -102,6 +105,7 @@ export const useUserSessionStore = create<SessionContext>()(
           user: undefined,
         });
         AppAxios.setAuthHeader();
+        clearCart();
         options?.onSuccess?.();
       };
 

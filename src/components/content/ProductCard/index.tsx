@@ -1,5 +1,6 @@
 import { Defaults } from "@/common/constants/Defaults";
 import { useProductImageData } from "@/common/hooks/useProductData";
+import { useConsumerCartStore } from "@/common/stores/ConsumerCartStore";
 import RippleButton from "@/components/common/RippleButton";
 import { useRouter } from "next/router";
 import { ProductListItemProps } from "../Dashboard/ProductArea/ProductListItem";
@@ -11,14 +12,17 @@ function ProductListItem({ product }: ProductListItemProps) {
   const { data: productImgQuery } = useProductImageData(product.id);
   const { image } = productImgQuery || {};
 
-  const { slug, name, price, stock } = product || {};
+  const { slug, name, price, stock, id: productId } = product || {};
 
   const BRCurrency = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
+    maximumFractionDigits: 2,
   });
 
-  const CompactNumber = new Intl.NumberFormat("pt-BR");
+  const NumberFormater = new Intl.NumberFormat("pt-BR");
+
+  const { addProduct } = useConsumerCartStore();
 
   return (
     <li className={style["container"]}>
@@ -56,11 +60,14 @@ function ProductListItem({ product }: ProductListItemProps) {
         </p>
         <p className={style["txt-stock"]}>
           <span>Restam: </span>
-          {CompactNumber.format(product.stock)}
+          {NumberFormater.format(product.stock)}
         </p>
       </div>
       <div className={style["action-area"]}>
-        <RippleButton className={`${style["cta-btn"]}`} onClick={() => {}}>
+        <RippleButton
+          className={`${style["cta-btn"]}`}
+          onClick={() => addProduct({ product, quantity: 1 })}
+        >
           ADICIONAR AO CARRINHO
         </RippleButton>
       </div>

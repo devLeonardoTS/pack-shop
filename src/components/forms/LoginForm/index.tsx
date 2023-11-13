@@ -11,7 +11,7 @@ const LoginForm = () => {
 
   const { signIn, status, error } = useUserSessionStore();
 
-  const { clearProducts } = useConsumerCartStore();
+  const { clearItems } = useConsumerCartStore();
 
   const formik = useFormik({
     initialValues: {
@@ -23,8 +23,6 @@ const LoginForm = () => {
         { email: values.email, password: values.password },
         {
           onSuccess: async () => {
-            clearProducts();
-
             MySwal.fire({
               title: <p>Usuário autenticado</p>,
               toast: true,

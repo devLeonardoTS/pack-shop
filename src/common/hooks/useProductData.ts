@@ -75,22 +75,19 @@ export const useBusinessProductListData = (
 };
 
 const getProductData = ({ queryKey }: any) => {
-  const [key, resourceId] = queryKey;
+  const [key, options] = queryKey;
 
-  const query = stringify({
-    include: {},
-  });
+  const query = stringify({});
 
   return AppAxios.client.get<IProductResponse>(
-    `v1/product/${resourceId}?${query}`,
+    `v1/product/${options?.resourceId}?${query}`,
   );
 };
 
 export const useProductData = (
-  resourceId: number,
-  options?: IActionCallbackOptions,
+  options?: { resourceId: number } & IActionCallbackOptions,
 ) => {
-  return useQuery(["product-data", resourceId], getProductData, {
+  return useQuery(["product-data", options], getProductData, {
     onSuccess: options?.onSuccess,
     onError: options?.onError,
     select: (response) => {

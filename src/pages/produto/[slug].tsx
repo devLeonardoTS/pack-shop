@@ -4,12 +4,12 @@ import { IBusinessResponse } from "@/common/responses/IBusinessResponse";
 import { IPaginatedResponse } from "@/common/responses/IPaginatedResponse";
 import { IProductImageResponse } from "@/common/responses/IProductImageResponse";
 import { IProductResponse } from "@/common/responses/IProductResponse";
+import { useConsumerCartStore } from "@/common/stores/ConsumerCartStore";
 import { AppAxios } from "@/common/utilities/AppAxios";
 import RippleButton from "@/components/common/RippleButton";
 import LayoutPrimary from "@/components/layouts/LayoutPrimary";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { stringify } from "qs";
 import { ReactElement } from "react";
 import style from "./index.module.scss";
@@ -71,11 +71,12 @@ const ProductPage = ({
   productImages,
   business,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { push } = useRouter();
+  const { addProduct } = useConsumerCartStore();
 
   const BRCurrency = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
+    maximumFractionDigits: 2,
   });
 
   const CompactNumber = new Intl.NumberFormat("pt-BR");
@@ -175,7 +176,10 @@ const ProductPage = ({
             <a href={`/loja/${slug}`} className={style["btn-link"]}>
               <RippleButton>Ir para Loja</RippleButton>
             </a>
-            <RippleButton className={`${style["cta-btn"]}`} onClick={() => {}}>
+            <RippleButton
+              className={`${style["cta-btn"]}`}
+              onClick={() => addProduct({ product, quantity: 1 })}
+            >
               ADICIONAR AO CARRINHO
             </RippleButton>
           </div>

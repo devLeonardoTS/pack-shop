@@ -1,5 +1,6 @@
 import { useUserSessionStore } from "@/common/stores/UserSessionStore";
 import Image from "next/image";
+import { SignedMenuItems } from "../NavbarPrimary";
 import style from "./index.module.scss";
 
 const NavbarMenuItems = () => {
@@ -38,7 +39,7 @@ const NavbarDashboard = () => {
         </a>
       </div>
       <menu className={style["right-area"]}>
-        <NavbarMenuItems />
+        <SignedMenuItems />
       </menu>
     </nav>
   );
