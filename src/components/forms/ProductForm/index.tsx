@@ -18,7 +18,7 @@ const ProductForm = () => {
   const { user } = useUserSessionStore();
 
   const [imagePreview, setImagePreview] = useState<any>();
-  const [file, setFile] = useState<any>();
+  const [imageFile, setImageFile] = useState<any>();
 
   const MySwal = withReactContent(Swal);
 
@@ -80,10 +80,10 @@ const ProductForm = () => {
         isAvailable: Boolean(values.isAvailable),
       });
 
-      if (productResponse.data) {
+      if (productResponse.data && imageFile instanceof File) {
         console.log("[ProductForm]: Creating product image data.");
         await createProductImage({
-          file: file,
+          file: imageFile,
           productId: productResponse.data.id,
           imageType: EImageType.PRODUCT_DISPLAY_1,
         });
@@ -92,14 +92,14 @@ const ProductForm = () => {
   });
 
   useEffect(() => {
-    if (file && file instanceof File) {
-      setImagePreview(URL.createObjectURL(file));
-    } else if (file) {
-      setImagePreview(file);
+    if (imageFile && imageFile instanceof File) {
+      setImagePreview(URL.createObjectURL(imageFile));
+    } else if (imageFile) {
+      setImagePreview(imageFile);
     } else {
       setImagePreview(undefined);
     }
-  }, file);
+  }, imageFile);
 
   useEffect(() => {
     if (isProductCreationLoading || isProductImageCreationLoading) {
@@ -112,17 +112,6 @@ const ProductForm = () => {
         didOpen: () => {
           MySwal.showLoading(null);
         },
-      });
-    }
-
-    if (isProductCreated && isProductImageCreated) {
-      MySwal.fire({
-        title: <p>Produto cadastrado!</p>,
-        toast: true,
-        timerProgressBar: true,
-        timer: 2000,
-        position: "bottom-right",
-        icon: "success",
       });
     }
 
@@ -153,27 +142,14 @@ const ProductForm = () => {
       });
     }
 
-    if (productImageCreationError) {
-      const reqError = productImageCreationError as any;
-      const error = reqError?.response?.data;
-
-      let message;
-      switch (error.statusCode) {
-        case EHttpStatusCode.BAD_REQUEST:
-          message =
-            "A imagem enviada está no formato correto? Verifique e tente novamente.";
-          break;
-        default:
-          message = "A imagem não foi cadastrada, tente novamente mais tarde";
-          break;
-      }
-
+    if (isProductCreated) {
       MySwal.fire({
-        title: <p>Ops...</p>,
-        text: message,
+        title: <p>Produto cadastrado!</p>,
         toast: true,
+        timerProgressBar: true,
+        timer: 2000,
         position: "bottom-right",
-        icon: "error",
+        icon: "success",
       });
     }
   }, [
@@ -182,7 +158,6 @@ const ProductForm = () => {
     isProductCreated,
     isProductImageCreated,
     productCreationError,
-    productImageCreationError,
   ]);
 
   return (
@@ -319,7 +294,6 @@ const ProductForm = () => {
             name="expiresAt"
             onChange={formik.handleChange}
             value={formik.values.expiresAt}
-            required
           />
         </div>
 
@@ -395,7 +369,7 @@ const ProductForm = () => {
             accept="image/*"
             hidden
             onChange={(ev) => {
-              setFile(ev.target.files?.[0]);
+              setImageFile(ev.target.files?.[0]);
             }}
           />
         </div>
