@@ -22,7 +22,7 @@ const PJForm = () => {
   const MySwal = withReactContent(Swal);
 
   const [imagePreview, setImagePreview] = useState<any>();
-  const [file, setFile] = useState<any>();
+  const [imageFile, setImageFile] = useState<any>();
 
   const {
     mutateAsync: createPjAccount,
@@ -99,13 +99,13 @@ const PJForm = () => {
         fullName: values.ownerName,
       });
 
-      if (accountResponse.data) {
+      if (accountResponse.data && imageFile instanceof File) {
         console.log(
           "[PJForm]: Creating PJ account image data.",
           accountResponse.data,
         );
         await createProfileImage({
-          file: file,
+          file: imageFile,
           profileId: accountResponse.data.profile.id,
           imageType: EImageType.PROFILE_AVATAR_1,
         });
@@ -114,14 +114,14 @@ const PJForm = () => {
   });
 
   useEffect(() => {
-    if (file && file instanceof File) {
-      setImagePreview(URL.createObjectURL(file));
-    } else if (file) {
-      setImagePreview(file);
+    if (imageFile && imageFile instanceof File) {
+      setImagePreview(URL.createObjectURL(imageFile));
+    } else if (imageFile) {
+      setImagePreview(imageFile);
     } else {
       setImagePreview(undefined);
     }
-  }, [file]);
+  }, [imageFile]);
 
   useEffect(() => {
     if (isPjAccountCreationLoading || isProfileImageCreationLoading) {
@@ -134,19 +134,6 @@ const PJForm = () => {
         didOpen: () => {
           MySwal.showLoading(null);
         },
-      });
-    }
-
-    if (isPjAccountCreated && isProfileImageCreated) {
-      MySwal.fire({
-        title: <p>Usuário cadastrado!</p>,
-        text: "Direcionando para a tela de Login...",
-        toast: true,
-        timerProgressBar: true,
-        timer: 5000,
-        position: "bottom-right",
-        icon: "success",
-        didClose: () => router.push("/login"),
       });
     }
 
@@ -176,27 +163,16 @@ const PJForm = () => {
       });
     }
 
-    if (profileImageCreationError) {
-      const reqError = profileImageCreationError as any;
-      const error = reqError?.response?.data;
-
-      let message;
-      switch (error.statusCode) {
-        case EHttpStatusCode.BAD_REQUEST:
-          message =
-            "A imagem enviada está no formato correto? Verifique e tente novamente.";
-          break;
-        default:
-          message = "A imagem não foi cadastrada, tente novamente mais tarde";
-          break;
-      }
-
+    if (isPjAccountCreated) {
       MySwal.fire({
-        title: <p>Ops...</p>,
-        text: message,
+        title: <p>Usuário cadastrado!</p>,
+        text: "Direcionando para a tela de Login...",
         toast: true,
+        timerProgressBar: true,
+        timer: 5000,
         position: "bottom-right",
-        icon: "error",
+        icon: "success",
+        didClose: () => router.push("/login"),
       });
     }
   }, [
@@ -205,7 +181,6 @@ const PJForm = () => {
     pjAccountCreationError,
     isProfileImageCreated,
     isProfileImageCreationLoading,
-    profileImageCreationError,
   ]);
 
   return (
@@ -242,7 +217,7 @@ const PJForm = () => {
                 accept="image/*"
                 hidden
                 onChange={(ev) => {
-                  setFile(ev.target.files?.[0]);
+                  setImageFile(ev.target.files?.[0]);
                 }}
               />
             </div>
